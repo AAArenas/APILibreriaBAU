@@ -1,6 +1,6 @@
 # API de la app LibreriaBau. 
 
-Tecnologías a utilizar 
+Tecnologías a utilizar
 -Java 13.0.1
 -MySQL 5.7.27.0
 -SPRING BOOT 2.2.2
@@ -9,15 +9,18 @@ Tecnologías a utilizar
 -Angular
 
 Capas
+
 FRONT 
-                -COMPONENTE
-                -ABSTRACCION(MODEL)
-                -SERVICE
+-COMPONENTE
+-ABSTRACCION(MODEL)
+-SERVICE
+
+
 BACK
-                -CONTROLLER
-                -SERVICE
-                -REPOSITORY/MODEL
-                -DAO
+-CONTROLLER
+-SERVICE
+-REPOSITORY/MODEL
+-DAO
 
 ----TOOLS-----
 -GIT
