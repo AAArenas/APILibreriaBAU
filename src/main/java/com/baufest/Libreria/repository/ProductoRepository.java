@@ -1,11 +1,13 @@
 package com.baufest.Libreria.repository;
 
+import com.baufest.Libreria.models.Producto;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 @Repository
-public class ProductoRepository implements IProductoRepository {
-    @Override
-    public Integer agregarProducto(String nombreProducto) {
-        return null;
-    }
+public interface ProductoRepository extends JpaRepository<Producto, Long> {
+
+
 }

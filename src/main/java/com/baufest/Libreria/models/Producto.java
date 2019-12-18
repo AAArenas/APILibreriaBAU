@@ -2,18 +2,23 @@ package com.baufest.Libreria.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(name="Productos")
 public class Producto {
 
-
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
-    @NotBlank
+    @Column(name = "tipo", nullable = false, length = 30)
     private String tipo;
-    @NotBlank
+    @Column(name= "precio", nullable = false)
     private double precio;
 
     public Producto(@JsonProperty("name") String nombre,
