@@ -25,21 +25,18 @@ public class ClienteService {
     }
 
     public Optional<Cliente> obtenerClienteId(Integer id) {
-        return clienteRepository.findAll().stream().filter(cliente -> cliente.getId()==id).findFirst();
-
+        return clienteRepository.findById(id);
     }
 
     public int borrarClienteId(Integer id)
     {
         Optional<Cliente> cliente=obtenerClienteId(id);
-        if(cliente.isEmpty()){
+        if(cliente.isEmpty()) {
             return 0;
-        }else{
-            Cliente clienteEliminar=cliente.get();
-            clienteRepository.delete(clienteEliminar);
+        } else {
+            clienteRepository.delete(cliente.get());
             return 1;
         }
-
     }
 
     public String editarCliente(Integer id, Cliente cliente) {

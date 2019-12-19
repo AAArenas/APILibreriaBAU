@@ -11,8 +11,6 @@ import java.util.HashMap;
 @Table(name="clientes")
 public class Cliente {
 
-    @Autowired
-
     @Id
     @GeneratedValue
     @Column(name = "id",unique=true, nullable = false)
@@ -23,6 +21,17 @@ public class Cliente {
     @Column(name="direccion")
     @NotBlank
     private String direccion;
+
+    @Autowired
+    public Cliente(Integer id, String direccion, String nombre) {
+        this.id = id;
+        this.direccion = direccion;
+        this.name = nombre;
+    }
+    @Autowired
+    public Cliente(){
+
+    }
 
     public Integer getId() {
         return this.id;

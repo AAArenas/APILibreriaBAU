@@ -28,7 +28,7 @@ public class ClienteController {
     }
     @GetMapping(path="/{id}")
     public Cliente obtenerClienteId(@PathVariable("id") Integer id) {
-        return clienteService.obtenerClienteId(id).orElse(null);
+        return clienteService.obtenerClienteId(id).get();
     }
     @DeleteMapping(path="{id}")
     public int borrarClienteId(@PathVariable("id") Integer id) {
