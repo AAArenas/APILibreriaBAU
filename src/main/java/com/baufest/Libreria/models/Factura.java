@@ -1,24 +1,36 @@
 package com.baufest.Libreria.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Entity
+@Table(name= "Factura")
 public class Factura {
 
-    private Integer id;
-    private LocalDate fecha;
-    private ArrayList<Compra> compras = new ArrayList<Compra>();
-    private Double montoTotal;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
 
+    @Column(name = "Fecha", nullable = false)
+    public LocalDate fecha;
+
+    public ArrayList<Compra> compras = new ArrayList<Compra>();
+
+    @Column(name = "montoTotal", nullable = false)
+    public Double montoTotal;
+
+    public Factura(){
+
+    }
+    /*
     public Factura(LocalDate fecha, ArrayList<Compra> compras, Double montoTotal, Integer id) {
         this.id = id;
         this.fecha = fecha;
         this.compras = compras;
         this.montoTotal = montoTotal;
-    }
+    }*/
 
     public double getMontoTotal() {
         return montoTotal;

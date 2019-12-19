@@ -1,7 +1,7 @@
 package com.baufest.Libreria.models;
 
 public class Compra {
-
+/*
     private Producto _producto;
     private Integer _cantidad;
 
@@ -20,5 +20,5 @@ public class Compra {
 
     public double devolverPrecio(){
         return _producto.devolverPrecio()*_cantidad;
-    }
+    }*/
 }
