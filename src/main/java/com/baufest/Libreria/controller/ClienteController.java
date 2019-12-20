@@ -19,8 +19,8 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
     @PostMapping
-    public void crearCliente(@NonNull @RequestBody Cliente cliente){
-        clienteService.crearCliente(cliente);
+    public Cliente crearCliente(@NonNull @RequestBody Cliente cliente){
+        return clienteService.crearCliente(cliente);
     }
     @GetMapping
     public List<Cliente> obtenerClientes(){

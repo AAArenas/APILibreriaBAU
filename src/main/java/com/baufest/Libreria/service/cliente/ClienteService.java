@@ -11,17 +11,15 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
-    private static List<Cliente> DB=new ArrayList<>();
     @Autowired
     ClienteRepository clienteRepository;
 
-    public void crearCliente(Cliente cliente){
-        clienteRepository.save(cliente);
+    public Cliente crearCliente(Cliente cliente){
+        return clienteRepository.save(cliente);
     }
 
     public List<Cliente> obtenerClientes() {
-        DB=clienteRepository.findAll();
-        return DB;
+        return clienteRepository.findAll();
     }
 
     public Optional<Cliente> obtenerClienteId(Integer id) {
