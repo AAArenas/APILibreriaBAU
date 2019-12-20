@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service.cliente;
+/*package com.baufest.Libreria.service.cliente;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.repository.ClienteRepository;
@@ -13,9 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.when;*/
 
-@RunWith(MockitoJUnitRunner.class)
+/*@RunWith(MockitoJUnitRunner.class)
 class ClienteServiceTest {
     @MockBean
     private ClienteRepository mockRepository;
@@ -34,4 +34,4 @@ class ClienteServiceTest {
             System.out.println("Error");
         }
     }
-}
+}*/
