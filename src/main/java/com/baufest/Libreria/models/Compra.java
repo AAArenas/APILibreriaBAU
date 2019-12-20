@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Compra {
-
+/*
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Compra {
 
     @Column
     Integer cantidad;
-
+*/
 /*
     private Producto _producto;
     private Integer _cantidad;

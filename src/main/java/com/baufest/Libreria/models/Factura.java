@@ -25,10 +25,10 @@ public class Factura {
 
     @Column(name = "montoTotal", nullable = false)
     public Double montoTotal;
-
+/*
     Cliente cliente;
     Producto producto;
-
+*/
     public Factura(){
 
     }
