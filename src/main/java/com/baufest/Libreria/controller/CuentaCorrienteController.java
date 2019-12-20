@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("api/v1/cuentacorriente")
 @RestController
@@ -22,20 +21,47 @@ public class CuentaCorrienteController {
         }
 
         @PostMapping
-        public int save(CuentaCorriente cuentaCorriente){
-            cuentaCorrienteService.save(cuentaCorriente);
+        public int addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
+            cuentaCorrienteService.addCuentaCorriente(cuentaCorriente);
             return 1;
         }
 
 
         @GetMapping
-        public ResponseEntity<ArrayList<CuentaCorriente>> findAll (){
-            CuentaCorriente cuenta = new CuentaCorriente("camilo");
-            ArrayList<CuentaCorriente> cuentasCorrientes = new ArrayList<>();
-            cuentasCorrientes.add(cuenta);
-            return ResponseEntity.ok(cuentasCorrientes);
+        public ResponseEntity<List<CuentaCorriente>> findAll (){
+            return ResponseEntity.ok(cuentaCorrienteService.findAll());
 
-    }
+        }
+
+        @GetMapping (path = "{id}")
+        public ResponseEntity<CuentaCorriente> getCuentaCorrienteById(@PathVariable("id") Integer id) {
+            Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
+            if (optionalCuentaCorriente.isPresent()){
+                return ResponseEntity.ok(optionalCuentaCorriente.get());
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+
+        }
+
+        @PutMapping
+        public ResponseEntity<CuentaCorriente> updateCuentaCorriente(@RequestParam Integer id, @RequestBody CuentaCorriente cuentaCorrienteToUpdate) {
+            Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
+            if (optionalCuentaCorriente.isPresent()){
+                return ResponseEntity.ok(cuentaCorrienteService.updateCuentaCorriente(id, cuentaCorrienteToUpdate).get());
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        }
+
+
+        @DeleteMapping
+        public int deleteById(@RequestParam Integer id){
+            Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
+            cuentaCorrienteService.deleteById(cuentaEncontrada);
+            return 1;
+        }
+
 
 
 }

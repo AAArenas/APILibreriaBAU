@@ -1,42 +1,53 @@
 package com.baufest.Libreria.service.cuentacorriente;
 
 import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.baufest.Libreria.repository.cuentacorriente.CuentaCorrienteDao;
+import com.baufest.Libreria.repository.cuentacorriente.CuentaCorrienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CuentaCorrienteService {
 
     @Autowired
-    private final CuentaCorrienteDao cuentaCorrienteDao;
+    private final CuentaCorrienteRepository cuentaCorrienteRepository;
 
-    public CuentaCorrienteService(CuentaCorrienteDao cuentaCorrienteDao) {
-        this.cuentaCorrienteDao = cuentaCorrienteDao;
+    public CuentaCorrienteService(CuentaCorrienteRepository cuentaCorrienteRepository) {
+        this.cuentaCorrienteRepository = cuentaCorrienteRepository;
     }
 
-    public int save(CuentaCorriente cuentaCorriente){
-         cuentaCorrienteDao.save(cuentaCorriente);
+    public int addCuentaCorriente(CuentaCorriente cuentaCorriente){
+         cuentaCorrienteRepository.save(cuentaCorriente);
          return 1;
     }
 
-  /*  public ResponseEntity<List<CuentaCorriente>> findAll(){
-        List<CuentaCorriente> cuentasCorrientes = cuentaCorrienteDao.findAll();
-        return ResponseEntity.ok(cuentasCorrientes);
+
+    public List<CuentaCorriente> findAll(){
+        List<CuentaCorriente> cuentasCorrientes = cuentaCorrienteRepository.findAll();
+        return cuentasCorrientes;
+    }
+
+    public int deleteById (Optional<CuentaCorriente> cuentaEncontrada) {
+        cuentaCorrienteRepository.delete(cuentaEncontrada.get());
+        return 1;
+    }
+
+    public Optional<CuentaCorriente> getCuentaCorrienteById(Integer id){
+        return cuentaCorrienteRepository.findById(id);
     }
 
 
-*/
-
-    public ResponseEntity<ArrayList<CuentaCorriente>> findAll(){
-        CuentaCorriente cuenta = new CuentaCorriente("camilo");
-        ArrayList<CuentaCorriente> cuentasCorrientes = new ArrayList<>();
-        cuentasCorrientes.add(cuenta);
-        return ResponseEntity.ok(cuentasCorrientes);
+    public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
+        CuentaCorriente cuentaToUpdate = cuentaCorrienteRepository.findById(id).get();
+        cuentaToUpdate.setId(id);
+        cuentaToUpdate.setName(cuentaCorriente.getName());
+        cuentaCorrienteRepository.save(cuentaToUpdate);
+        return cuentaCorrienteRepository.findById(id);
     }
+
+
+
 }

@@ -8,8 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface CuentaCorrienteDao extends JpaRepository <CuentaCorriente, Integer> {
-
+public interface CuentaCorrienteRepository extends JpaRepository <CuentaCorriente, Integer> {
 
 
 }
