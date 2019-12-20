@@ -17,7 +17,7 @@ public class FacturaController {
 
     // List All
     @RequestMapping(value = "/factura")
-    public ResponseEntity<List<Factura>> getAllFactura() throws Throwable {
+    public ResponseEntity<List<Factura>> getAllFactura() {
         return facturaService.getAllFactura();
     }
 

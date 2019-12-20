@@ -33,9 +33,9 @@ public class FacturaService {
     public ResponseEntity<Factura> updateFactura(Integer id, Factura factura){
         Factura facturaUpdateable = getFactura(id).getBody();
 
-        facturaUpdateable.fecha = factura.fecha;
+        //facturaUpdateable.fecha = factura.fecha;
         facturaUpdateable.montoTotal = factura.montoTotal;
-        facturaUpdateable.compras = factura.compras;
+        //facturaUpdateable.compras = factura.compras;
 
         return saveFactura(facturaUpdateable);
     }
