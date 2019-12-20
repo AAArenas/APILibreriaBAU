@@ -5,30 +5,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Entity
 @Table(name= "Factura")
 public class Factura {
+
+    //todo: recordar sacar los publics y agregar los getters
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
-   // @Column(name = "Fecha", nullable = false)
-    //public LocalDate fecha = LocalDate.now();
+    @Column(name = "Fecha", nullable = false)
+    public LocalDate fecha;
 
     //public ArrayList<Compra> compras = new ArrayList<Compra>();
 
     @Column(name = "montoTotal", nullable = false)
     public Double montoTotal;
 
+    Cliente cliente;
+    Producto producto;
 
     public Factura(){
 
     }
-    public Factura(@JsonProperty("montoTotal") Double montoTotal){
+    public Factura(@JsonProperty("montoTotal") Double montoTotal,
+                   @JsonProperty("fecha") LocalDate fecha){
 
+        this.fecha = fecha;
         this.montoTotal = montoTotal;
     }
 
