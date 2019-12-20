@@ -1,11 +1,15 @@
 package com.baufest.Libreria.controller;
 
+import com.baufest.Libreria.errors.ValidationException;
 import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpHeaders;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -13,11 +17,11 @@ import java.util.List;
 public class ProductoController {
 
     @Autowired
-    private final ProductoService productoService;
+    private ProductoService productoService;
 
-    public ProductoController(ProductoService productoService) {
+   /* public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
-    }
+    }*/
 
     @GetMapping
     public ResponseEntity<List<Producto>> listarProductos(){
@@ -25,26 +29,41 @@ public class ProductoController {
     }
 
     @PostMapping
-    public Integer agregarProducto(@RequestBody Producto producto){
-        return productoService.agregarProducto(producto);
+    public ResponseEntity<?> agregarProducto(@RequestBody Producto producto){
+        try {
+            return productoService.agregarProducto(producto);
+        } catch(ValidationException exception){
+            return ResponseEntity.badRequest().body(exception.getMsg());
+        }
     }
 
     @GetMapping(path = "{id}")
     @ResponseBody
-    public ResponseEntity<Producto> getProducto(@PathVariable("id") Integer id){
-        System.out.println(id);
-        return productoService.getProducto(id);
+    public ResponseEntity<?> getProducto(@PathVariable("id") Integer id){
+        try {
+            return productoService.getProducto(id);
+        } catch(ValidationException exception){
+            return ResponseEntity.badRequest().body(exception.getMsg());
+        }
     }
 
     @DeleteMapping(value ="{id}")
     public ResponseEntity<?> deleteProducto(@PathVariable("id") Integer id){
-        productoService.deleteProducto(id);
-        return ResponseEntity.ok(null);
+        try {
+            return productoService.deleteProducto(id);
+        } catch(ValidationException exception){
+            return ResponseEntity.badRequest().body(exception.getMsg());
+        }
     }
 
     @PutMapping(path="{id}")
     public ResponseEntity<?> editProducto(@PathVariable("id") Integer id, @RequestBody Producto producto){
-        return productoService.editProducto(id, producto);
+        try {
+            return productoService.editProducto(id, producto);
+        } catch(ValidationException exception){
+            return ResponseEntity.badRequest().body(exception.getMsg());
+        }
+
     }
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
 @Entity
@@ -15,10 +16,15 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank
     @Column(name = "nombre", nullable = false, length = 30)
+
+    @NotBlank
     private String nombre;
     @Column(name = "tipo", nullable = false, length = 30)
     private String tipo;
+
+    @NotNull
     @Column(name= "precio", nullable = false)
     private double precio;
 
@@ -60,6 +66,10 @@ public class Producto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
 

@@ -1,7 +1,9 @@
 package com.baufest.Libreria.service;
 
+import com.baufest.Libreria.errors.ValidationException;
 import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.repository.ProductoRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,20 +16,23 @@ import java.util.Optional;
 public class ProductoService {
 
     @Autowired
-    private final ProductoRepository productoRepository;
+    private  ProductoRepository productoRepository;
 
 
-    public ProductoService(ProductoRepository productoRepository){
+   /* public ProductoService(ProductoRepository productoRepository){
         this.productoRepository= productoRepository;
-    }
+    }*/
 
     public ResponseEntity<List<Producto>> findAll(){
         List<Producto> productos = productoRepository.findAll();
         return ResponseEntity.ok(productos);
     }
 
-    public Integer agregarProducto(Producto producto){
-        return productoRepository.save(producto).getId();
+    public ResponseEntity<Integer> agregarProducto(Producto producto){
+        if (producto.getNombre().isBlank() || producto.getTipo().isBlank()){
+            throw new ValidationException("No podés meter un producto vacio, forro");
+        }
+        return ResponseEntity.ok(productoRepository.save(producto).getId());
     }
 
     public ResponseEntity<Producto> getProducto(Integer id){
@@ -35,13 +40,14 @@ public class ProductoService {
         if(optionalProducto.isPresent()){
             return ResponseEntity.ok(optionalProducto.get());
         } else {
-            return ResponseEntity.noContent().build();
+            throw new ValidationException("No hay usuario con este id");
         }
     }
 
-    public void deleteProducto(Integer id){
+    public ResponseEntity<?> deleteProducto(Integer id){
         Producto producto = this.getProducto(id).getBody();
         productoRepository.delete(producto);
+        return ResponseEntity.ok().build();
     }
 
     public ResponseEntity<?> editProducto(Integer id, Producto producto){
@@ -51,7 +57,7 @@ public class ProductoService {
         productoViejo.setNombre(productoNuevo.getNombre());
         productoViejo.setPrecio(productoNuevo.getPrecio());
         productoViejo.setTipo(productoNuevo.getTipo());
-        return ResponseEntity.ok(productoRepository.save(productoViejo).getId());
+        return ResponseEntity.ok(this.agregarProducto(productoViejo));
     }
 
 
