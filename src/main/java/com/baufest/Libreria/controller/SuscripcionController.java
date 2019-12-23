@@ -1,7 +1,7 @@
 package com.baufest.Libreria.controller;
 
 
-import com.baufest.Libreria.models.SuscripcionModel;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.service.suscripcion.SuscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,19 +18,19 @@ public class SuscripcionController {
 
     //List all suscripcion
     @GetMapping
-    public ResponseEntity<List<SuscripcionModel>> getAllSuscripcions(){
+    public ResponseEntity<List<Suscripcion>> getAllSuscripcions(){
             return suscripcionService.getAllSuscripcions();
     }
 
     //List one suscripcion
     @RequestMapping(value = "{suscripcionId}", method = RequestMethod.GET)
-    public ResponseEntity<SuscripcionModel> getSuscripcion(@PathVariable("suscripcionId") Integer suscripcionId){
+    public ResponseEntity<Suscripcion> getSuscripcion(@PathVariable("suscripcionId") Integer suscripcionId){
         return suscripcionService.getSuscripcionById(suscripcionId);
     }
 
     //Create new suscripcion
     @PostMapping
-    public ResponseEntity<SuscripcionModel> createSuscripcion(@RequestBody SuscripcionModel suscripcion){
+    public ResponseEntity<Suscripcion> createSuscripcion(@RequestBody Suscripcion suscripcion){
         return suscripcionService.save(suscripcion);
     }
 
@@ -41,7 +41,7 @@ public class SuscripcionController {
     }
 
     @PutMapping(path = "{Id}")
-    public ResponseEntity<SuscripcionModel> updateSuscripcion(@PathVariable("Id") Integer Id,@RequestBody SuscripcionModel suscripcionModel){
-        return suscripcionService.update(Id, suscripcionModel);
+    public ResponseEntity<Suscripcion> updateSuscripcion(@PathVariable("Id") Integer Id, @RequestBody Suscripcion suscripcion){
+        return suscripcionService.update(Id, suscripcion);
     }
 }

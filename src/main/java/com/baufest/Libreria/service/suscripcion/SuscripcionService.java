@@ -1,6 +1,6 @@
 package com.baufest.Libreria.service.suscripcion;
 
-import com.baufest.Libreria.models.SuscripcionModel;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,21 +16,21 @@ public class SuscripcionService {
     @Autowired
     SuscripcionRepository suscripcionRepository;
 
-    public ResponseEntity<List<SuscripcionModel>> getAllSuscripcions() {
-        List<SuscripcionModel> suscripciones = suscripcionRepository.findAll();
+    public ResponseEntity<List<Suscripcion>> getAllSuscripcions() {
+        List<Suscripcion> suscripciones = suscripcionRepository.findAll();
         return ResponseEntity.ok(suscripciones);
     }
 
-    public ResponseEntity<SuscripcionModel> getSuscripcionById(Integer suscripcionId) {
-        Optional<SuscripcionModel> optionalSuscripcionModel = suscripcionRepository.findById(suscripcionId);
+    public ResponseEntity<Suscripcion> getSuscripcionById(Integer suscripcionId) {
+        Optional<Suscripcion> optionalSuscripcionModel = suscripcionRepository.findById(suscripcionId);
         if (optionalSuscripcionModel.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(optionalSuscripcionModel.get());
     }
 
-    public ResponseEntity<SuscripcionModel> save(SuscripcionModel suscripcion) {
-        SuscripcionModel nuevaSuscripcion = suscripcionRepository.save(suscripcion);
+    public ResponseEntity<Suscripcion> save(Suscripcion suscripcion) {
+        Suscripcion nuevaSuscripcion = suscripcionRepository.save(suscripcion);
         return ResponseEntity.ok(nuevaSuscripcion);
     }
 
@@ -43,11 +43,11 @@ public class SuscripcionService {
             }
     }
 
-    public ResponseEntity<SuscripcionModel> update(Integer Id, SuscripcionModel suscripcionModel) {
-        //if (suscripcionModel.get) Fixme: validar... que validar?
+    public ResponseEntity<Suscripcion> update(Integer Id, Suscripcion suscripcion) {
+        //if (suscripcion.get) Fixme: validar... que validar?
         if (suscripcionRepository.existsById(Id)) {
-            suscripcionModel.setId(Id);
-            return ResponseEntity.ok(suscripcionRepository.save(suscripcionModel));
+            suscripcion.setId(Id);
+            return ResponseEntity.ok(suscripcionRepository.save(suscripcion));
         } else {
             return ResponseEntity.notFound().build();
         }

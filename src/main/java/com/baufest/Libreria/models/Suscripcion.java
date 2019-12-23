@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "Suscripcion")
-public class SuscripcionModel {
+public class Suscripcion {
 
     @Id
     @Column(name = "id",nullable = false)
@@ -32,7 +32,7 @@ public class SuscripcionModel {
     Integer cantidadMensual;
 
 
-    public SuscripcionModel(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion){
+    public Suscripcion(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion){
      //   this.producto = producto;
 
         this.cantidadMensual = cantidadMensual;
@@ -40,7 +40,7 @@ public class SuscripcionModel {
         this.finSuscripcion = finSuscripcion;
     }
 
-    public SuscripcionModel(){}
+    public Suscripcion(){}
 
     public Integer getId() { return Id;}
 

@@ -1,10 +1,9 @@
 package com.baufest.Libreria.service.suscripcion;
 
-import com.baufest.Libreria.models.SuscripcionModel;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -16,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -32,7 +30,7 @@ class SuscripcionServiceTest {
     void sePuedeGuardarUnaSuscripcionTest() {
 
         LocalDate finalizacion = LocalDate.of(2020, 3, 11);
-        SuscripcionModel suscripcionTest = new SuscripcionModel(2, finalizacion);
+        Suscripcion suscripcionTest = new Suscripcion(2, finalizacion);
 
         when(mockRepository.save(suscripcionTest)).thenReturn(suscripcionTest);
 
@@ -44,11 +42,11 @@ class SuscripcionServiceTest {
     void getSuscripcionByIdTest() {
 
         LocalDate finalizacion = LocalDate.of(2020, 3, 11);
-        SuscripcionModel suscripcionTest = new SuscripcionModel(2, finalizacion);
+        Suscripcion suscripcionTest = new Suscripcion(2, finalizacion);
         suscripcionTest.setId(1);
 
         when(mockRepository.findById(1)).thenReturn(Optional.of(suscripcionTest));
-        SuscripcionModel suscripcionReturn = suscripcionService.getSuscripcionById(1).getBody();
+        Suscripcion suscripcionReturn = suscripcionService.getSuscripcionById(1).getBody();
 
         assertEquals(suscripcionReturn, suscripcionTest);
 
@@ -61,18 +59,18 @@ class SuscripcionServiceTest {
         LocalDate finalizacion2 = LocalDate.of(2022, 3, 11);
         LocalDate finalizacion3 = LocalDate.of(2023, 3, 11);
 
-        SuscripcionModel suscripcionTest1 = new SuscripcionModel(2, finalizacion1);
-        SuscripcionModel suscripcionTest2 = new SuscripcionModel(4, finalizacion2);
-        SuscripcionModel suscripcionTest3 = new SuscripcionModel(8, finalizacion3);
+        Suscripcion suscripcionTest1 = new Suscripcion(2, finalizacion1);
+        Suscripcion suscripcionTest2 = new Suscripcion(4, finalizacion2);
+        Suscripcion suscripcionTest3 = new Suscripcion(8, finalizacion3);
 
-        List<SuscripcionModel> suscripcionesTest = new ArrayList<SuscripcionModel>();
+        List<Suscripcion> suscripcionesTest = new ArrayList<Suscripcion>();
 
         suscripcionesTest.add(suscripcionTest1);
         suscripcionesTest.add(suscripcionTest2);
         suscripcionesTest.add(suscripcionTest3);
 
         when(mockRepository.findAll()).thenReturn(suscripcionesTest);
-        List<SuscripcionModel> suscripcionReturn = suscripcionService.getAllSuscripcions().getBody();
+        List<Suscripcion> suscripcionReturn = suscripcionService.getAllSuscripcions().getBody();
 
         assertEquals(suscripcionesTest,suscripcionReturn);
 
@@ -82,11 +80,11 @@ class SuscripcionServiceTest {
     void delete() {
 
         LocalDate finalizacion = LocalDate.of(2020, 3, 11);
-        SuscripcionModel suscripcionTest = new SuscripcionModel(2, finalizacion);
+        Suscripcion suscripcionTest = new Suscripcion(2, finalizacion);
         suscripcionTest.setId(1);
 
         Mockito.when(mockRepository.deleteById(1)).thenReturn(null);
-        SuscripcionModel suscripcionReturn = suscripcionService.getSuscripcionById(1).getBody();
+        Suscripcion suscripcionReturn = suscripcionService.getSuscripcionById(1).getBody();
 
         assertEquals(suscripcionReturn, suscripcionTest);
 
