@@ -15,9 +15,11 @@ public class Cliente {
     @GeneratedValue
     @Column(name = "id",unique=true, nullable = false)
     private Integer id;
+
     @Column(name="name")
     @NotBlank
     private String name;
+
     @Column(name="direccion")
     @NotBlank
     private String direccion;
