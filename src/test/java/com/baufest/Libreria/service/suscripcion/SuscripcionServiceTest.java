@@ -25,7 +25,7 @@ class SuscripcionServiceTest {
     private SuscripcionService suscripcionService;
     @MockBean
     private SuscripcionRepository mockRepository;
-
+/*
     @Test
     void sePuedeGuardarUnaSuscripcionTest() {
 
@@ -90,9 +90,10 @@ class SuscripcionServiceTest {
 
 
     }
-*/
+
     @Test
     void update() {
 
     }
+    */
 }
