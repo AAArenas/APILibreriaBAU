@@ -61,8 +61,8 @@ public class FacturaControllerTest {
 
         Assert.assertSame(f, facturaController.saveFactura(f).getBody());
     }
-
-/*    @Test
+/*
+    @Test
     public void ControllerUpdateFactura(){
         Factura f = new Factura(200.0, LocalDate.now());
 
