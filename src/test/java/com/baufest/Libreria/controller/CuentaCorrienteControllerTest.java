@@ -70,23 +70,7 @@ class CuentaCorrienteControllerTest {
 
     }
 
-    @Test
-    void deleteById () {
-        CuentaCorriente mockCuentaCorriente = new CuentaCorriente("Juan");
-        mockCuentaCorriente.setId(2);
-        Optional<CuentaCorriente> optionalCuentaCorriente = Optional.of(mockCuentaCorriente);
-        Mockito.when(cuentaCorrienteRepository.findById(2)).thenReturn(optionalCuentaCorriente);
-
-        cuentaCorrienteController.deleteById(mockCuentaCorriente.getId());
-
-        assertThat(cuentaCorrienteRepository.findById(2)).isEqualTo(null);
-
-
-
-
-
-    }
-
+   
 
 }
 
