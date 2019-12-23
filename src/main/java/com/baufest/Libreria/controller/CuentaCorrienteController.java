@@ -21,9 +21,8 @@ public class CuentaCorrienteController {
         }
 
         @PostMapping
-        public int addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
-            cuentaCorrienteService.addCuentaCorriente(cuentaCorriente);
-            return 1;
+        public ResponseEntity<CuentaCorriente> addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
+            return ResponseEntity.ok(cuentaCorrienteService.addCuentaCorriente(cuentaCorriente));
         }
 
 

@@ -20,9 +20,8 @@ public class CuentaCorrienteService {
         this.cuentaCorrienteRepository = cuentaCorrienteRepository;
     }
 
-    public int addCuentaCorriente(CuentaCorriente cuentaCorriente){
-         cuentaCorrienteRepository.save(cuentaCorriente);
-         return 1;
+    public CuentaCorriente addCuentaCorriente(CuentaCorriente cuentaCorriente){
+         return cuentaCorrienteRepository.save(cuentaCorriente);
     }
 
 
