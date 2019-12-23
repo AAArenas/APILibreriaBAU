@@ -18,7 +18,6 @@ target/
 *.iws
 *.iml
 *.ipr
-*.yml
 
 ### NetBeans ###
 /nbproject/private/
@@ -69,4 +68,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # Database configuration file (Sebastian)
-src\main\resources\application.yml
+src\main\resources\aplication.properties
