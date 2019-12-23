@@ -14,7 +14,7 @@ import java.util.List;
 public class SuscripcionController {
 
     @Autowired
-    SuscripcionService suscripcionService;
+    SuscripcionService suscripcionService ;
 
     //List all suscripcion
     @GetMapping
@@ -34,8 +34,9 @@ public class SuscripcionController {
         return suscripcionService.save(suscripcion);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteSuscripcion(@PathVariable("suscripcionId") Integer suscripcionId){
+    @DeleteMapping(value = "{suscripcionId}")
+    //@RequestMapping(value = "{suscripcionId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Integer> deleteSuscripcion(@PathVariable("suscripcionId") Integer suscripcionId){
         return suscripcionService.delete(suscripcionId);
     }
 

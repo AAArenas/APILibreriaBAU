@@ -4,6 +4,7 @@ import com.baufest.Libreria.models.SuscripcionModel;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -75,12 +77,22 @@ class SuscripcionServiceTest {
         assertEquals(suscripcionesTest,suscripcionReturn);
 
     }
-
+/*
     @Test
     void delete() {
 
-    }
+        LocalDate finalizacion = LocalDate.of(2020, 3, 11);
+        SuscripcionModel suscripcionTest = new SuscripcionModel(2, finalizacion);
+        suscripcionTest.setId(1);
 
+        Mockito.when(mockRepository.deleteById(1)).thenReturn(null);
+        SuscripcionModel suscripcionReturn = suscripcionService.getSuscripcionById(1).getBody();
+
+        assertEquals(suscripcionReturn, suscripcionTest);
+
+
+    }
+*/
     @Test
     void update() {
 

@@ -1,5 +1,7 @@
 package com.baufest.Libreria.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.apache.tomcat.jni.Local;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
@@ -14,36 +16,42 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class SuscripcionModel {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer Id;
-    @Column(name = "Inicio de suscripcion", nullable = false)
+
+    @Column(name = "Inicio_de_suscripcion", nullable = true)
     protected LocalDate inicioSuscripcion;
-    @Column(name = "Fin de suscripcion", nullable = false)
-    protected LocalDate finSuscripcion;
-   // @Column(name = "Producto", nullable = false)
-   // protected Producto producto;
-    @Column(name = "Cantidad mensual")
-    protected Integer cantidadMensual;
+
+    @Column(name = "Fin_de_suscripcion", nullable = true)
+    LocalDate finSuscripcion;
+    //@Column(name = "Producto", nullable = false)
+    //Producto producto;
+
+    @Column(name = "Cantidad_mensual")
+    Integer cantidadMensual;
 
 
-    public SuscripcionModel(/*Producto producto, */Integer cantidadMensual, LocalDate finSuscripcion){
-       // this.producto = producto;
+    public SuscripcionModel(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion){
+     //   this.producto = producto;
+
         this.cantidadMensual = cantidadMensual;
         this.inicioSuscripcion = LocalDate.now();
         this.finSuscripcion = finSuscripcion;
     }
+
+    public SuscripcionModel(){}
 
     public Integer getId() { return Id;}
 
     public void setId(Integer id) {
         Id = id;
     }
-/*
-    public Producto getProducto() {
-        return producto;
-    }
-*/
+
+//    public Producto getProducto() {
+  //      return producto;
+    //}
+
     public LocalDate getInicio() {
         return inicioSuscripcion;
     }
@@ -63,5 +71,6 @@ public class SuscripcionModel {
     public Integer getCantidadSemanal() {
         return cantidadMensual;
     }
+
 
 }
