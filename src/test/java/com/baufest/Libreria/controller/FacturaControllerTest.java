@@ -73,6 +73,9 @@ public class FacturaControllerTest {
 
     @Test
     public void ControllerDeleteFactura(){
+
+        //todo pensar como testear esto a futuro
+
         Mockito.doNothing().when(facturaService.deleteFactura(1));
     }
 }
