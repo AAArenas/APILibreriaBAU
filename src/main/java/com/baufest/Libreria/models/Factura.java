@@ -23,6 +23,7 @@ public class Factura {
     public LocalDate fecha;
 
     //public ArrayList<Compra> compras = new ArrayList<Compra>();
+
     @ManyToOne
     @JoinColumn(name = "cuentaCorriente")
     private CuentaCorriente cuentaCorriente;
