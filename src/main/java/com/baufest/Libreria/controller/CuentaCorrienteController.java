@@ -33,7 +33,7 @@ public class CuentaCorrienteController {
 
         }
 
-        @GetMapping (path = "{id}")
+        @GetMapping (path = "/{id}")
         public ResponseEntity<CuentaCorriente> getCuentaCorrienteById(@PathVariable("id") Integer id) {
             Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
             if (optionalCuentaCorriente.isPresent()){

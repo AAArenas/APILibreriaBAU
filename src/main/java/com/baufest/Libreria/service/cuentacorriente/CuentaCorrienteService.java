@@ -3,6 +3,7 @@ package com.baufest.Libreria.service.cuentacorriente;
 import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
 import com.baufest.Libreria.repository.cuentacorriente.CuentaCorrienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,14 @@ public class CuentaCorrienteService {
     }
 
     public int deleteById (Optional<CuentaCorriente> cuentaEncontrada) {
-        cuentaCorrienteRepository.delete(cuentaEncontrada.get());
-        return 1;
+        try {
+            cuentaCorrienteRepository.delete(cuentaEncontrada.get());
+            return 1;
+        } catch (EmptyResultDataAccessException e) {
+            System.out.println("No se encontró la cuenta");
+            return 0;
+        }
+
     }
 
     public Optional<CuentaCorriente> getCuentaCorrienteById(Integer id){
