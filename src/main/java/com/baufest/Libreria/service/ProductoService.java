@@ -5,6 +5,8 @@ import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.repository.ProductoRepository;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +47,12 @@ public class ProductoService {
     }
 
     public ResponseEntity<?> deleteProducto(Integer id){
-        Producto producto = this.getProducto(id).getBody();
-        productoRepository.delete(producto);
-        return ResponseEntity.ok().build();
+        try {
+            productoRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException exception) {
+            return new ResponseEntity("No se pudo realizar el delete, gil", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(id);
     }
 
     public ResponseEntity<?> editProducto(Integer id, Producto producto){

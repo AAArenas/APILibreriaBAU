@@ -49,11 +49,7 @@ public class ProductoController {
 
     @DeleteMapping(value ="{id}")
     public ResponseEntity<?> deleteProducto(@PathVariable("id") Integer id){
-        try {
-            return productoService.deleteProducto(id);
-        } catch(ValidationException exception){
-            return ResponseEntity.badRequest().body(exception.getMsg());
-        }
+        return productoService.deleteProducto(id);
     }
 
     @PutMapping(path="{id}")
