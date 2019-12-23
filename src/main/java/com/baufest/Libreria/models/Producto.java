@@ -28,6 +28,11 @@ public class Producto {
     @Column(name= "precio", nullable = false)
     private double precio;
 
+    @OneToOne(mappedBy = "producto")
+    private Compra compra;
+
+    @OneToOne(mappedBy = "producto")
+    private Suscripcion suscripcion;
 
     public Producto(){};
 
