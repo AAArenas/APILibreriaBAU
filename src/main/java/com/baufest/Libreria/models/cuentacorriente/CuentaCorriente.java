@@ -19,15 +19,13 @@ public class CuentaCorriente {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "name")
-    @OneToOne
+    @OneToOne(mappedBy = "cuentaCorriente")
     private Cliente cliente;
     @OneToMany(mappedBy = "cuentaCorriente")
-    private List<Factura> facturas;
-
+    private List<Factura> facturas = new ArrayList<Factura>();
 
     public CuentaCorriente() {
-        facturas = new ArrayList<Factura>();
+
     }
 
     public Integer getId() {

@@ -18,7 +18,6 @@ public class Factura {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
-
     @Column(name = "Fecha", nullable = false)
     public LocalDate fecha;
 
