@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -22,6 +23,9 @@ public class Factura {
     public LocalDate fecha;
 
     //public ArrayList<Compra> compras = new ArrayList<Compra>();
+    @ManyToOne
+    @JoinColumn(name = "cuentaCorriente")
+    private CuentaCorriente cuentaCorriente;
 
     @Column(name = "montoTotal", nullable = false)
     public Double montoTotal;

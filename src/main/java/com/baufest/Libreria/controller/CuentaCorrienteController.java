@@ -13,37 +13,37 @@ import java.util.Optional;
 @RestController
 public class CuentaCorrienteController {
 
-        private final CuentaCorrienteService cuentaCorrienteService;
+    private final CuentaCorrienteService cuentaCorrienteService;
 
-        @Autowired
-        public CuentaCorrienteController(CuentaCorrienteService cuentaCorrienteService) {
-            this.cuentaCorrienteService = cuentaCorrienteService;
+    @Autowired
+    public CuentaCorrienteController(CuentaCorrienteService cuentaCorrienteService) {
+        this.cuentaCorrienteService = cuentaCorrienteService;
+    }
+
+    @PostMapping
+    public ResponseEntity<CuentaCorriente> addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
+        return ResponseEntity.ok(cuentaCorrienteService.addCuentaCorriente(cuentaCorriente));
+    }
+
+
+    @GetMapping
+    public ResponseEntity<List<CuentaCorriente>> findAll (){
+        return ResponseEntity.ok(cuentaCorrienteService.findAll());
+
+    }
+
+    @GetMapping (path = "/{id}")
+    public ResponseEntity<CuentaCorriente> getCuentaCorrienteById(@PathVariable("id") Integer id) {
+        Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
+        if (optionalCuentaCorriente.isPresent()){
+            return ResponseEntity.ok(optionalCuentaCorriente.get());
+        } else {
+            return ResponseEntity.noContent().build();
         }
 
-        @PostMapping
-        public ResponseEntity<CuentaCorriente> addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
-            return ResponseEntity.ok(cuentaCorrienteService.addCuentaCorriente(cuentaCorriente));
-        }
+    }
 
-
-        @GetMapping
-        public ResponseEntity<List<CuentaCorriente>> findAll (){
-            return ResponseEntity.ok(cuentaCorrienteService.findAll());
-
-        }
-
-        @GetMapping (path = "/{id}")
-        public ResponseEntity<CuentaCorriente> getCuentaCorrienteById(@PathVariable("id") Integer id) {
-            Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
-            if (optionalCuentaCorriente.isPresent()){
-                return ResponseEntity.ok(optionalCuentaCorriente.get());
-            } else {
-                return ResponseEntity.noContent().build();
-            }
-
-        }
-
-        @PutMapping
+    /*    @PutMapping
         public ResponseEntity<CuentaCorriente> updateCuentaCorriente(@RequestParam Integer id, @RequestBody CuentaCorriente cuentaCorrienteToUpdate) {
             Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
             if (optionalCuentaCorriente.isPresent()){
@@ -54,12 +54,14 @@ public class CuentaCorrienteController {
         }
 
 
-        @DeleteMapping
-        public int deleteById(@RequestParam Integer id){
-            Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
-            cuentaCorrienteService.deleteById(cuentaEncontrada);
-            return 1;
-        }
+     */
+
+    @DeleteMapping
+    public int deleteById(@RequestParam Integer id){
+        Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
+        cuentaCorrienteService.deleteById(cuentaEncontrada);
+        return 1;
+    }
 
 
 

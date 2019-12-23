@@ -21,7 +21,7 @@ public class CuentaCorrienteService {
     }
 
     public CuentaCorriente addCuentaCorriente(CuentaCorriente cuentaCorriente){
-         return cuentaCorrienteRepository.save(cuentaCorriente);
+        return cuentaCorrienteRepository.save(cuentaCorriente);
     }
 
 
@@ -46,7 +46,7 @@ public class CuentaCorrienteService {
     }
 
 
-    public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
+ /*   public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
         CuentaCorriente cuentaToUpdate = cuentaCorrienteRepository.findById(id).get();
         cuentaToUpdate.setId(id);
         cuentaToUpdate.setName(cuentaCorriente.getName());
@@ -54,6 +54,8 @@ public class CuentaCorrienteService {
         return cuentaCorrienteRepository.findById(id);
     }
 
+
+  */
 
 
 }

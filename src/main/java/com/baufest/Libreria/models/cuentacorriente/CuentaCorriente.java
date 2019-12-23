@@ -1,46 +1,52 @@
 package com.baufest.Libreria.models.cuentacorriente;
 
+import com.baufest.Libreria.models.Cliente;
+import com.baufest.Libreria.models.Factura;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Entity
-@Table (name = "cuentas")
+@Table (name = "cuentascorrientes")
 public class CuentaCorriente {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "name", nullable = false, length = 30)
-    @NotBlank
-    private String name;
+    @JoinColumn(name = "name")
+    @OneToOne
+    private Cliente cliente;
+    @OneToMany(mappedBy = "cuentaCorriente")
+    private List<Factura> facturas;
 
-    //private ArrayList <Factura> facturas = new ArrayList<>();
-
-    public CuentaCorriente(@JsonProperty("name") String name) {
-        this.name = name;
-    }
 
     public CuentaCorriente() {
+        facturas = new ArrayList<Factura>();
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<Factura> getFactura() {
+        return facturas;
     }
 
+    public void setFactura(Set<Factura> factura) {
+        this.facturas = facturas;
+    }
 
+    public void addFactura (Factura f){
+        facturas.add(f);
+    }
 }
