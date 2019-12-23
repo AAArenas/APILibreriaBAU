@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name="clientes")
@@ -24,12 +25,16 @@ public class Cliente {
     @NotBlank
     private String direccion;
 
+    @OneToMany(mappedBy = "suscripcion")
+    private List<Suscripcion> suscripciones;
+
     @Autowired
     public Cliente(Integer id, String direccion, String nombre) {
         this.id = id;
         this.direccion = direccion;
         this.name = nombre;
     }
+
     @Autowired
     public Cliente(){
 
