@@ -19,8 +19,11 @@ public class CuentaCorriente {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @OneToOne(mappedBy = "cuentaCorriente")
+
+    @OneToOne
+    @JoinColumn(name = "cliente")
     private Cliente cliente;
+
     @OneToMany(mappedBy = "cuentaCorriente")
     private List<Factura> facturas = new ArrayList<Factura>();
 

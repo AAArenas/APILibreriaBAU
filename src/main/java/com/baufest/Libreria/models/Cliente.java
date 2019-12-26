@@ -32,8 +32,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
-    @OneToOne
-    @JoinColumn(name = "cuentaCorriente", nullable = false)
+    @OneToOne(mappedBy = "cliente")
     CuentaCorriente cuentaCorriente;
 
     @Autowired
