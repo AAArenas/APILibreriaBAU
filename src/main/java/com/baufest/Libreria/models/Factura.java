@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name= "Factura")
@@ -22,8 +23,8 @@ public class Factura {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "compra")
-    private ArrayList<Compra> compras = new ArrayList<Compra>();
+    @OneToMany(mappedBy = "compras")
+    private List<Compra> compras = new ArrayList<Compra>();
 
     @ManyToOne
     @JoinColumn(name = "cuentaCorriente")
@@ -70,11 +71,11 @@ public class Factura {
         this.fecha = fecha;
     }
 
-    public ArrayList<Compra> getCompras() {
+    public List<Compra> getCompras() {
         return compras;
     }
 
-    public void setCompras(ArrayList<Compra> compras) {
+    public void setCompras(List<Compra> compras) {
         this.compras = compras;
     }
 }
