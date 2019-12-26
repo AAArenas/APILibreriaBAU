@@ -11,7 +11,8 @@ public class Compra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    //Integer id_factura;
+    @ManyToOne
+    @JoinColumn(name="factura")
     Factura factura;
 
     //Integer id_renglon
@@ -24,7 +25,7 @@ public class Compra {
 
     @OneToOne
     @JoinColumn(name="producto")
-    private Producto _producto;
+    private Producto producto;
 
 
     public Compra() {

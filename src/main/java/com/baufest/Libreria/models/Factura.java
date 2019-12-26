@@ -22,7 +22,7 @@ public class Factura {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-
+    @OneToMany(mappedBy = "compra")
     private ArrayList<Compra> compras = new ArrayList<Compra>();
 
     @ManyToOne
