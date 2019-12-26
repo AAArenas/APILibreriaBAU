@@ -46,7 +46,6 @@ public class Factura {
         this.montoTotal = montoTotal;
     }
 
-
     public Double getMontoTotal() {
         return montoTotal;
     }
