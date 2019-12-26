@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +31,10 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
+
+    @OneToOne
+    @JoinColumn(name = "cuentaCorriente", nullable = false)
+    CuentaCorriente cuentaCorriente;
 
     @Autowired
     public Cliente(Integer id, String direccion, String nombre) {
