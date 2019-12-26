@@ -17,21 +17,25 @@ public class Factura {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
-    @Column(name = "Fecha", nullable = false)
-    public LocalDate fecha;
+    private Integer id;
 
-    //public ArrayList<Compra> compras = new ArrayList<Compra>();
+    @Column(name = "fecha", nullable = false)
+    private LocalDate fecha;
+
+    @OneToMany(mappedBy = "compra")
+    private ArrayList<Compra> compras = new ArrayList<Compra>();
+
     @ManyToOne
     @JoinColumn(name = "cuentaCorriente")
     private CuentaCorriente cuentaCorriente;
 
     @Column(name = "montoTotal", nullable = false)
-    public Double montoTotal;
-/*
-    Cliente cliente;
-    Producto producto;
-*/
+    private Double montoTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente")
+    private Cliente cliente;
+
     public Factura(){
 
     }
@@ -42,26 +46,35 @@ public class Factura {
         this.montoTotal = montoTotal;
     }
 
-    /*
-    public Factura(LocalDate fecha, ArrayList<Compra> compras, Double montoTotal, Integer id) {
-        this.id = id;
-        this.fecha = fecha;
-        this.compras = compras;
-        this.montoTotal = montoTotal;
-    }
-
-    public double getMontoTotal() {
+    public Double getMontoTotal() {
         return montoTotal;
     }
 
-    public ArrayList<Compra> getCompras() {
-        return compras;
+    public void setMontoTotal(Double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+
+    public CuentaCorriente getCuentaCorriente() {
+        return cuentaCorriente;
+    }
+
+    public void setCuentaCorriente(CuentaCorriente cuentaCorriente) {
+        this.cuentaCorriente = cuentaCorriente;
     }
 
     public LocalDate getFecha() {
         return fecha;
     }
 
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
 
-     */
+    public ArrayList<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(ArrayList<Compra> compras) {
+        this.compras = compras;
+    }
 }
