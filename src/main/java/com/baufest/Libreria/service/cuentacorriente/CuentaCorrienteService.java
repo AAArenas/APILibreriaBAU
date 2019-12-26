@@ -43,6 +43,7 @@ public class CuentaCorrienteService {
 
     public Optional<CuentaCorriente> getCuentaCorrienteById(Integer id){
         return cuentaCorrienteRepository.findById(id);
+
     }
 
 
