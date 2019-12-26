@@ -1,7 +1,12 @@
 package com.baufest.Libreria.service.suscripcion;
 
+import com.baufest.Libreria.models.Cliente;
+import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.models.Suscripcion;
+import com.baufest.Libreria.repository.ClienteRepository;
 import com.baufest.Libreria.repository.SuscripcionRepository;
+import com.baufest.Libreria.service.ProductoService;
+import com.baufest.Libreria.service.cliente.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -13,6 +18,10 @@ import java.util.Optional;
 @Service
 public class SuscripcionService {
 
+    @Autowired
+    ClienteService clienteService;
+    @Autowired
+    ProductoService productoService;
     @Autowired
     SuscripcionRepository suscripcionRepository;
 
@@ -30,6 +39,10 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<Suscripcion> save(Suscripcion suscripcion) {
+        Cliente cliente = clienteService.obtenerClienteId(suscripcion.getClienteId()).get();
+        Producto producto = productoService.getProducto(suscripcion.getProductoId()).getBody();
+        suscripcion.setCliente(cliente);
+        suscripcion.setProducto(producto);
         Suscripcion nuevaSuscripcion = suscripcionRepository.save(suscripcion);
         return ResponseEntity.ok(nuevaSuscripcion);
     }

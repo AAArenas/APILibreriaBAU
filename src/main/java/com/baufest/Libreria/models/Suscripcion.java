@@ -33,13 +33,19 @@ public class Suscripcion {
     @Column(name = "Cantidad_mensual")
     Integer cantidadMensual;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "cliente",nullable = false)
     private Cliente cliente;
+
+    @Transient
+    Integer clienteId;
+
+    @Transient
+    Integer productoId;
 
     public Suscripcion(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion,@JsonProperty("cliente") Cliente cliente){
 
-        this.producto = producto;
-        this.cantidadMensual = cantidadMensual;
+//        this.cantidadMensual = cantidadMensual;
         this.inicioSuscripcion = LocalDate.now();
         this.finSuscripcion = finSuscripcion;
         this.cliente = cliente;
@@ -51,6 +57,10 @@ public class Suscripcion {
 
     public void setId(Integer id) {
         Id = id;
+    }
+
+    public Cliente getCliente(){
+        return this.cliente;
     }
 
     public Producto getProducto() {
@@ -77,4 +87,19 @@ public class Suscripcion {
         return cantidadMensual;
     }
 
+    public Integer getClienteId() {
+        return this.clienteId;
+    }
+
+    public Integer getProductoId() {
+        return this.productoId;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }

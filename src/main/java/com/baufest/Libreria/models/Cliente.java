@@ -14,8 +14,8 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id",unique=true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique=true)
     private Integer id;
 
     @Column(name="name")
