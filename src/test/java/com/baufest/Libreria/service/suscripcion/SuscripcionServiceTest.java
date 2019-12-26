@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service.suscripcion;
+/*package com.baufest.Libreria.service.suscripcion;
 
 import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.SuscripcionRepository;
@@ -25,7 +25,7 @@ class SuscripcionServiceTest {
     private SuscripcionService suscripcionService;
     @MockBean
     private SuscripcionRepository mockRepository;
-/*
+
     @Test
     void sePuedeGuardarUnaSuscripcionTest() {
 
@@ -75,7 +75,7 @@ class SuscripcionServiceTest {
         assertEquals(suscripcionesTest,suscripcionReturn);
 
     }
-/*
+
     @Test
     void delete() {
 
@@ -95,5 +95,4 @@ class SuscripcionServiceTest {
     void update() {
 
     }
-    */
-}
+}*/
