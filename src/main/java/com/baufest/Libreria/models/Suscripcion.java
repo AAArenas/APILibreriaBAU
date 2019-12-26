@@ -33,11 +33,10 @@ public class Suscripcion {
     @Column(name = "Cantidad_mensual")
     Integer cantidadMensual;
 
-    @ManyToOne
-    @JoinColumn(name="cliente_nombre")
+    @OneToOne
     private Cliente cliente;
 
-    public Suscripcion(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion, Cliente cliente){
+    public Suscripcion(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion,@JsonProperty("cliente") Cliente cliente){
 
         this.producto = producto;
         this.cantidadMensual = cantidadMensual;
