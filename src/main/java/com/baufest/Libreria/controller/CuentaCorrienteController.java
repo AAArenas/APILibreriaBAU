@@ -23,6 +23,7 @@ public class CuentaCorrienteController {
 
     @PostMapping
     public ResponseEntity<CuentaCorriente> addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
+
         return ResponseEntity.ok(cuentaCorrienteService.addCuentaCorriente(cuentaCorriente));
     }
 
