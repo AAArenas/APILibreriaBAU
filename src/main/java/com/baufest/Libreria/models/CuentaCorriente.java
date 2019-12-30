@@ -68,4 +68,11 @@ public class CuentaCorriente {
     public void cargarCliente(ClienteService clienteService) {
         this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
     }
+
+    public Double calcularMontoTotal() {
+        Double montoTotal = 0.0;
+        for (Factura f : facturas) {
+            montoTotal += f.getMontoTotal();
+        }
+    }
 }
