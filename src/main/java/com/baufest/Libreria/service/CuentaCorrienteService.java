@@ -49,6 +49,10 @@ public class CuentaCorrienteService {
 
     }
 
+    public Optional<CuentaCorriente> getCuentaCorrienteByClienteId(Integer id){
+        return cuentaCorrienteRepository.findByClienteId(id);
+    }
+
 
  /*   public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
         CuentaCorriente cuentaToUpdate = cuentaCorrienteRepository.findById(id).get();

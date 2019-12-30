@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequestMapping("api/v1/cuentacorriente")
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
 public class CuentaCorrienteController {
 
@@ -41,6 +42,12 @@ public class CuentaCorrienteController {
             return ResponseEntity.noContent().build();
         }
 
+    }
+
+    @GetMapping (path = "/{clienteId}")
+    public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteId") Integer id){
+        Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(id);
+        return ResponseEntity.ok(optionalCuentaCorriente.get());
     }
 
     /*    @PutMapping
