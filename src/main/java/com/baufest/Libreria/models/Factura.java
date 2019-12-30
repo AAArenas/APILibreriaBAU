@@ -1,12 +1,10 @@
 package com.baufest.Libreria.models;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity

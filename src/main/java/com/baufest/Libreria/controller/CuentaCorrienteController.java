@@ -1,7 +1,7 @@
 package com.baufest.Libreria.controller;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.baufest.Libreria.service.cuentacorriente.CuentaCorrienteService;
+import com.baufest.Libreria.models.CuentaCorriente;
+import com.baufest.Libreria.service.CuentaCorrienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,16 +1,11 @@
 package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.service.ProductoService;
-import com.baufest.Libreria.service.cliente.ClienteService;
+import com.baufest.Libreria.service.ClienteService;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.apache.tomcat.jni.Local;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 @Entity

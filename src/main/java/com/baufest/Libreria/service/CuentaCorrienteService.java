@@ -1,10 +1,9 @@
-package com.baufest.Libreria.service.cuentacorriente;
+package com.baufest.Libreria.service;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.baufest.Libreria.repository.cuentacorriente.CuentaCorrienteRepository;
+import com.baufest.Libreria.models.CuentaCorriente;
+import com.baufest.Libreria.repository.CuentaCorrienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +13,9 @@ import java.util.Optional;
 public class CuentaCorrienteService {
 
     @Autowired
+    ClienteService clienteService;
+
+    @Autowired
     private final CuentaCorrienteRepository cuentaCorrienteRepository;
 
     public CuentaCorrienteService(CuentaCorrienteRepository cuentaCorrienteRepository) {
@@ -21,6 +23,7 @@ public class CuentaCorrienteService {
     }
 
     public CuentaCorriente addCuentaCorriente(CuentaCorriente cuentaCorriente){
+        cuentaCorriente.cargarCliente(clienteService);
         return cuentaCorrienteRepository.save(cuentaCorriente);
     }
 

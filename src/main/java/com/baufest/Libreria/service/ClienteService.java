@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service.cliente;
+package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.repository.ClienteRepository;

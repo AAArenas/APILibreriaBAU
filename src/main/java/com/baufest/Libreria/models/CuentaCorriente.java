@@ -1,7 +1,8 @@
-package com.baufest.Libreria.models.cuentacorriente;
+package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Factura;
+import com.baufest.Libreria.service.ClienteService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Set;
 public class CuentaCorriente {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -27,9 +28,14 @@ public class CuentaCorriente {
     @OneToMany(mappedBy = "cuentaCorriente")
     private List<Factura> facturas = new ArrayList<Factura>();
 
-    public CuentaCorriente() {
+    @Transient
+    Integer clienteId;
 
+    public CuentaCorriente(@JsonProperty ("clienteId") Integer clienteId) {
+        this.clienteId = clienteId;
     }
+
+    public CuentaCorriente(){}
 
     public Integer getId() {
         return id;
@@ -49,5 +55,17 @@ public class CuentaCorriente {
 
     public void addFactura (Factura f){
         facturas.add(f);
+    }
+
+    public void setClienteId(Integer clienteId){
+        this.clienteId = clienteId;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void cargarCliente(ClienteService clienteService) {
+        this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
     }
 }

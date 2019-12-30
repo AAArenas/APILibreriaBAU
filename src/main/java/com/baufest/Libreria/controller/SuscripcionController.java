@@ -2,7 +2,7 @@ package com.baufest.Libreria.controller;
 
 
 import com.baufest.Libreria.models.Suscripcion;
-import com.baufest.Libreria.service.suscripcion.SuscripcionService;
+import com.baufest.Libreria.service.SuscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,9 @@
 package com.baufest.Libreria.models;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity

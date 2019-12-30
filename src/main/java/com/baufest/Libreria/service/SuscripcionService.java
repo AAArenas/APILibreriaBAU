@@ -1,12 +1,9 @@
-package com.baufest.Libreria.service.suscripcion;
+package com.baufest.Libreria.service;
 
-import com.baufest.Libreria.models.Cliente;
-import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.models.Suscripcion;
-import com.baufest.Libreria.repository.ClienteRepository;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import com.baufest.Libreria.service.ProductoService;
-import com.baufest.Libreria.service.cliente.ClienteService;
+import com.baufest.Libreria.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
