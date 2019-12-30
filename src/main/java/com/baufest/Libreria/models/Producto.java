@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="Productos")
@@ -31,8 +32,8 @@ public class Producto {
     @OneToOne(mappedBy = "producto")
     private Compra compra;
 
-    @OneToOne(mappedBy = "producto")
-    private Suscripcion suscripcion;
+    @OneToMany(mappedBy = "producto")
+    private List<Suscripcion> suscripcion;
 
     public Producto(){};
 

@@ -39,10 +39,9 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<Suscripcion> save(Suscripcion suscripcion) {
-        Cliente cliente = clienteService.obtenerClienteId(suscripcion.getClienteId()).get();
-        Producto producto = productoService.getProducto(suscripcion.getProductoId()).getBody();
-        suscripcion.setCliente(cliente);
-        suscripcion.setProducto(producto);
+        suscripcion.cargarCliente(clienteService);
+        suscripcion.cargarProducto(productoService);
+        suscripcion.comenzarSuscripcion();
         Suscripcion nuevaSuscripcion = suscripcionRepository.save(suscripcion);
         return ResponseEntity.ok(nuevaSuscripcion);
     }
@@ -59,6 +58,10 @@ public class SuscripcionService {
     public ResponseEntity<Suscripcion> update(Integer Id, Suscripcion suscripcion) {
         //if (suscripcion.get) Fixme: validar... que validar?
         if (suscripcionRepository.existsById(Id)) {
+            Suscripcion suscripcionAux  = this.getSuscripcionById(Id).getBody();
+            suscripcion.setInicioSuscripcion(suscripcionAux.getInicio());
+            suscripcion.cargarCliente(clienteService);
+            suscripcion.cargarProducto(productoService);
             suscripcion.setId(Id);
             return ResponseEntity.ok(suscripcionRepository.save(suscripcion));
         } else {
