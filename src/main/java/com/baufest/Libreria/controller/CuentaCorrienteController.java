@@ -41,13 +41,16 @@ public class CuentaCorrienteController {
         } else {
             return ResponseEntity.noContent().build();
         }
-
     }
 
-    @GetMapping (path = "/{clienteId}")
-    public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteId") Integer id){
+    @GetMapping (path = "/clienteid/{clienteid}")
+    public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteid") Integer id){
         Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(id);
-        return ResponseEntity.ok(optionalCuentaCorriente.get());
+        if (optionalCuentaCorriente.isPresent()){
+            return ResponseEntity.ok(optionalCuentaCorriente.get());
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 
     /*    @PutMapping
