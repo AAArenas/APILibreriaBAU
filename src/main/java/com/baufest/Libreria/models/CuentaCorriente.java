@@ -71,8 +71,10 @@ public class CuentaCorriente {
 
     public Double calcularMontoTotal() {
         Double montoTotal = 0.0;
+        // FIXME: 2/1/2020 solo cobrar las facturas impagas
         for (Factura f : facturas) {
             montoTotal += f.getMontoTotal();
         }
+        return montoTotal;
     }
 }

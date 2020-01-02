@@ -12,4 +12,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/kiosko
     username: root
-    password: passformysql
+    password: r10kusho420$

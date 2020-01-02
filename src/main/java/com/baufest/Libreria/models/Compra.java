@@ -1,5 +1,7 @@
 package com.baufest.Libreria.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,10 +29,35 @@ public class Compra {
     @JoinColumn(name="producto")
     private Producto producto;
 
+    @Transient
+    Integer productoId;
+
+    public Compra(@JsonProperty("cantidad") Integer cantidad, @JsonProperty("productoId") Integer productoId) {
+
+        this.productoId = productoId;
+        this.cantidad = cantidad;
+
+    }
 
     public Compra() {
 
     }
 
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public int getcantidad() {
+        return cantidad;
+    }
+
+    public double total(){
+        return (producto.getPrecio() * cantidad);
+    }
 
 }

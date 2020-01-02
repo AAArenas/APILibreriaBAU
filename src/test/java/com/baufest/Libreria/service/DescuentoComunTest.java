@@ -1,7 +1,6 @@
-package com.baufest.Libreria.service;
+/*package com.baufest.Libreria.service;
 
 
-import com.baufest.Libreria.service.DescuentoComun;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,3 +16,4 @@ public class DescuentoComunTest {
 
     }
 }
+*/
