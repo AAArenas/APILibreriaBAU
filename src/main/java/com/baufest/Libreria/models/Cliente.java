@@ -29,8 +29,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
-    @OneToOne(mappedBy = "cliente")
-    CuentaCorriente cuentaCorriente;
+//    @OneToOne(mappedBy = "cliente")
+//    CuentaCorriente cuentaCorriente;
 
     @Autowired
     public Cliente(Integer id, String direccion, String nombre) {

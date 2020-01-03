@@ -17,8 +17,8 @@ public class FacturaService {
     FacturaRepository facturaRepository;
     @Autowired
     CompraRepository compraRepository;
-    @Autowired
-    CuentaCorrienteService cuentaCorrienteService;
+//    @Autowired
+//    CuentaCorrienteService cuentaCorrienteService;
     @Autowired
     ClienteService clienteService;
     @Autowired
@@ -56,7 +56,7 @@ public class FacturaService {
     public ResponseEntity<Factura> saveFactura(Factura facturaVirtual){
 
         facturaVirtual.cargarCliente(clienteService);
-        facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
+//        facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
         facturaVirtual.cargarDescuentos(descuentoService);
         this.calcularMontoTotal(facturaVirtual);
         List<Compra> compras = facturaVirtual.getCompras();

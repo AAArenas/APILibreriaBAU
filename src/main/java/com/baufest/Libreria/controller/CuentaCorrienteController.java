@@ -1,4 +1,4 @@
-package com.baufest.Libreria.controller;
+/*package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.service.CuentaCorrienteService;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+*//*
 @RequestMapping("api/v1/cuentacorriente")
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
@@ -65,7 +65,7 @@ public class CuentaCorrienteController {
 
 
      */
-
+/*
     @DeleteMapping
     public int deleteById(@RequestParam Integer id){
         Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
@@ -76,5 +76,4 @@ public class CuentaCorrienteController {
 
 
 }
-
-
+*/

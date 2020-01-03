@@ -1,4 +1,4 @@
-package com.baufest.Libreria.models;
+/*package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Factura;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Entity
 @Table (name = "cuentascorrientes")
 public class CuentaCorriente {
-
+*//*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -77,4 +77,4 @@ public class CuentaCorriente {
         }
         return montoTotal;
     }
-}
+}*/

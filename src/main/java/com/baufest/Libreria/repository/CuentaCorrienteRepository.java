@@ -1,4 +1,4 @@
-package com.baufest.Libreria.repository;
+/*package com.baufest.Libreria.repository;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.CuentaCorriente;
@@ -18,3 +18,4 @@ public interface CuentaCorrienteRepository extends JpaRepository <CuentaCorrient
     Optional<CuentaCorriente> findByClienteId(@Param("clienteId") Integer clienteId);
 }
 
+*/

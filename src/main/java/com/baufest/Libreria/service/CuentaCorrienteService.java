@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service;
+/*package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.repository.CuentaCorrienteRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+*//*
 @Service
 public class CuentaCorrienteService {
 
@@ -65,5 +65,6 @@ public class CuentaCorrienteService {
 
   */
 
-
+/*
 }
+*/
