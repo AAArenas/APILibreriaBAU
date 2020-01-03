@@ -56,8 +56,8 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(@JsonProperty("compras") List<Compra> compras,/* @JsonProperty("descuentosId") List<Integer> descuentosId, */@JsonProperty("clienteId") Integer clienteId) {
-      //  this.descuentosId = descuentosId;
+    public Factura(@JsonProperty("compras") List<Compra> compras, @JsonProperty("descuentosId") List<Integer> descuentosId, @JsonProperty("clienteId") Integer clienteId) {
+        this.descuentosId = descuentosId;
         this.fecha = LocalDate.now();
         this.compras = compras;
         this.clienteId = clienteId;
@@ -123,6 +123,14 @@ public class Factura {
 
     public void pagar(){
         pagado = true;
+    }
+
+    public boolean getPagado(){
+        return pagado;
+    }
+
+    public List<Descuento> getDescuentos(){
+        return descuentos;
     }
 
 }

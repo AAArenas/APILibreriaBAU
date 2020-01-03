@@ -26,7 +26,7 @@ public class Compra {
     @Column(name = "total")
     private Double total;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="producto")
     private Producto producto;
 
