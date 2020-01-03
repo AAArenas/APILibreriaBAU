@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.service.ProductoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -60,4 +61,7 @@ public class Compra {
         return (producto.getPrecio() * cantidad);
     }
 
+    public void cargarProducto(ProductoService productoService) {
+        producto = productoService.getProducto(productoId).getBody();
+    }
 }

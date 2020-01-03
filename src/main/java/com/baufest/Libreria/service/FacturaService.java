@@ -1,9 +1,6 @@
 package com.baufest.Libreria.service;
 
-import com.baufest.Libreria.models.Cliente;
-import com.baufest.Libreria.models.Descuento;
-import com.baufest.Libreria.models.Compra;
-import com.baufest.Libreria.models.Factura;
+import com.baufest.Libreria.models.*;
 import com.baufest.Libreria.repository.CompraRepository;
 import com.baufest.Libreria.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,12 @@ public class FacturaService {
     CuentaCorrienteService cuentaCorrienteService;
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    DescuentoService descuentoService;
+    @Autowired
+    ProductoService productoService;
+
+
     /*
     @Autowired
     ProductoService productoService;
@@ -54,10 +57,15 @@ public class FacturaService {
 
         facturaVirtual.cargarCliente(clienteService);
         facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
+        facturaVirtual.cargarDescuentos(descuentoService);
         this.calcularMontoTotal(facturaVirtual);
-        Factura factura = facturaRepository.save(facturaVirtual);
         List<Compra> compras = facturaVirtual.getCompras();
+        for(int i = 0; i < compras.size(); i++) {
+            compras.get(i).cargarProducto(productoService);
+        }
+        Factura factura = facturaRepository.save(facturaVirtual);
         for(int i = 0; i < compras.size(); i++){
+           // compras.get(i).cargarProducto(productoService);
             compras.get(i).setFactura(factura);
             compraRepository.save((compras.get(i)));
         }

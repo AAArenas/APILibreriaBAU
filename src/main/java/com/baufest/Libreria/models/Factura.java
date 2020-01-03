@@ -2,6 +2,7 @@ package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.service.ClienteService;
 import com.baufest.Libreria.service.CuentaCorrienteService;
+import com.baufest.Libreria.service.DescuentoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -39,27 +40,27 @@ public class Factura {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "factura_descuento",
-            joinColumns = {@JoinColumn(referencedColumnName = "factura_id")},
-            inverseJoinColumns = {@JoinColumn(referencedColumnName = "descuento_id")})
-    public List<Descuento> descuentos = new ArrayList<>();
+            joinColumns = {@JoinColumn(referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+    private List<Descuento> descuentos = new ArrayList<>();
 
     @Transient
     Integer clienteId;
 
-    //@Transient
-   // final static double DESCUENTO_CLIENTE_CONOCIDO = 0.05;
+    @Transient
+    List<Integer> descuentosId;
 
     @Column(name = "pagada", nullable = false)
     private boolean pagado = false;
 
     public Factura() {
-
     }
 
-    public Factura(@JsonProperty("compras") List<Compra> compras) {
-
+    public Factura(@JsonProperty("compras") List<Compra> compras,/* @JsonProperty("descuentosId") List<Integer> descuentosId, */@JsonProperty("clienteId") Integer clienteId) {
+      //  this.descuentosId = descuentosId;
         this.fecha = LocalDate.now();
         this.compras = compras;
+        this.clienteId = clienteId;
     }
 
     public Double getMontoTotal() {
@@ -100,6 +101,13 @@ public class Factura {
 
     public void cargarCliente(ClienteService clienteService) {
         this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
+    }
+
+    public void cargarDescuentos(DescuentoService descuentoService){
+        Integer cantDescuentos = this.descuentosId.size();
+        for (int i = 0 ; i<cantDescuentos; i++){
+            this.descuentos.add(descuentoService.getDescuentoById(descuentosId.get(i)).getBody());
+        }
     }
 
     public Integer getId() {
