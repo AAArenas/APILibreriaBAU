@@ -17,31 +17,31 @@ public class FacturaController {
     FacturaService facturaService;
 
     // List All
-    @RequestMapping(value = "/factura")
+    @RequestMapping
     public ResponseEntity<List<Factura>> getAllFactura() {
         return facturaService.getAllFactura();
     }
 
     // List One
-    @RequestMapping(value = "/factura/{id}")
+    @RequestMapping(value = "/{id}")
     public ResponseEntity<Factura> getFactura(@PathVariable Integer id) {
         return facturaService.getFactura(id);
     }
 
     // Create New
-    @RequestMapping(value = "/factura", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Factura> saveFactura(@RequestBody Factura factura) {
         return facturaService.saveFactura(factura);
     }
 
     // Update with PUT
-    @RequestMapping(value = "/factura/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Factura> updateFactura(@PathVariable Integer id, @RequestBody Factura factura) {
         return facturaService.updateFactura(id,factura );
     }
 
     // Delete
-    @RequestMapping(value = "/factura/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteFactura(@PathVariable Integer id) {
         return facturaService.deleteFactura(id);
     }
