@@ -17,5 +17,4 @@ public interface CuentaCorrienteRepository extends JpaRepository <CuentaCorrient
     @Query("select c from CuentaCorriente c where c.cliente.id = :clienteId")
     Optional<CuentaCorriente> findByClienteId(@Param("clienteId") Integer clienteId);
 }
-
 */
