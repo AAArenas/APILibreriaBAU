@@ -56,11 +56,12 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(@JsonProperty("compras") List<Compra> compras, @JsonProperty("descuentosId") List<Integer> descuentosId, @JsonProperty("clienteId") Integer clienteId) {
+    public Factura(@JsonProperty("compras") List<Compra> compras, @JsonProperty("descuentosId") List<Integer> descuentosId, @JsonProperty("clienteId") Integer clienteId, @JsonProperty("pagado") boolean pagado) {
         this.descuentosId = descuentosId;
         this.fecha = LocalDate.now();
         this.compras = compras;
         this.clienteId = clienteId;
+        this.pagado = pagado;
     }
 
     public Double getMontoTotal() {
@@ -133,4 +134,11 @@ public class Factura {
         return descuentos;
     }
 
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+
+    public void setClienteId(Integer id) {
+        this.clienteId = id;
+    }
 }
