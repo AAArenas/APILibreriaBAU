@@ -15,14 +15,19 @@ public class FacturaService {
 
     @Autowired
     FacturaRepository facturaRepository;
+
     @Autowired
     CompraRepository compraRepository;
-//    @Autowired
-//    CuentaCorrienteService cuentaCorrienteService;
+
+//  @Autowired
+//  CuentaCorrienteService cuentaCorrienteService;
+
     @Autowired
     ClienteService clienteService;
+
     @Autowired
     DescuentoService descuentoService;
+
     @Autowired
     ProductoService productoService;
 
@@ -58,14 +63,14 @@ public class FacturaService {
         facturaVirtual.cargarCliente(clienteService);
 //      facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
         facturaVirtual.cargarDescuentos(descuentoService);
-        this.calcularMontoTotal(facturaVirtual);
         List<Compra> compras = facturaVirtual.getCompras();
         for(int i = 0; i < compras.size(); i++) {
             compras.get(i).cargarProducto(productoService);
         }
+        this.calcularMontoTotal(facturaVirtual);
         Factura factura = facturaRepository.save(facturaVirtual);
         for(int i = 0; i < compras.size(); i++){
-            //compras.get(i).cargarProducto(productoService);
+            compras.get(i).cargarProducto(productoService);
             compras.get(i).setFactura(factura);
             compraRepository.save((compras.get(i)));
         }

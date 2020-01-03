@@ -29,8 +29,8 @@ public class Producto {
     @Column(name= "precio", nullable = false)
     private double precio;
 
-    @OneToOne(mappedBy = "producto")
-    private Compra compra;
+    @OneToMany(mappedBy = "producto")
+    private List<Compra> compra = new ArrayList<>();
 
     @OneToMany(mappedBy = "producto")
     private List<Suscripcion> suscripcion;
