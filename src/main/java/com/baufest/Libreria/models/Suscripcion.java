@@ -1,14 +1,11 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.service.ProductoService;
+import com.baufest.Libreria.service.ClienteService;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import org.apache.tomcat.jni.Local;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 
 @Entity
@@ -16,7 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class Suscripcion {
 
     @Id
-    @Column(name = "id",nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer Id;
 
@@ -26,23 +23,32 @@ public class Suscripcion {
     @Column(name = "Fin_de_suscripcion", nullable = true)
     LocalDate finSuscripcion;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "Producto", nullable = false)
     Producto producto;
 
     @Column(name = "Cantidad_mensual")
     Integer cantidadMensual;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "cliente",nullable = false)
     private Cliente cliente;
 
-    public Suscripcion(/*Producto producto, */@JsonProperty("cantidadMensual") Integer cantidadMensual, @JsonProperty("finSuscripcion") LocalDate finSuscripcion,@JsonProperty("cliente") Cliente cliente){
+    @Transient
+    Integer clienteId;
 
-        this.producto = producto;
+    @Transient
+    Integer productoId;
+
+    public Suscripcion(@JsonProperty("cantidadMensual") Integer cantidadMensual,
+                       @JsonProperty("finSuscripcion") LocalDate finSuscripcion,
+                       @JsonProperty("clienteId") Integer clienteId,
+                       @JsonProperty("productoId") Integer productoId){
+
         this.cantidadMensual = cantidadMensual;
-        this.inicioSuscripcion = LocalDate.now();
         this.finSuscripcion = finSuscripcion;
-        this.cliente = cliente;
+        this.clienteId = clienteId;
+        this.productoId = productoId;
     }
 
     public Suscripcion(){}
@@ -53,12 +59,24 @@ public class Suscripcion {
         Id = id;
     }
 
+    public Cliente getCliente(){
+        return this.cliente;
+    }
+
     public Producto getProducto() {
         return producto;
     }
 
     public LocalDate getInicio() {
         return inicioSuscripcion;
+    }
+
+    public void setInicioSuscripcion(LocalDate inicioSuscripcion){
+        this.inicioSuscripcion = inicioSuscripcion;
+    }
+
+    public void comenzarSuscripcion(){
+        this.inicioSuscripcion = LocalDate.now();
     }
 
     public LocalDate getFin() {
@@ -75,6 +93,30 @@ public class Suscripcion {
 
     public Integer getCantidadSemanal() {
         return cantidadMensual;
+    }
+
+   /* public Integer getClienteId() {
+        return this.clienteId;
+    }
+
+    public Integer getProductoId() {
+        return this.productoId;
+    }
+*/
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public void cargarCliente(ClienteService clienteService) {
+        this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
+    }
+
+    public void cargarProducto(ProductoService productoService) {
+        this.producto = productoService.getProducto(this.productoId).getBody();
     }
 
 }

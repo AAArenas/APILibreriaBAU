@@ -1,9 +1,9 @@
 /* package com.baufest.Libreria.controller;
 
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.baufest.Libreria.repository.cuentacorriente.CuentaCorrienteRepository;
-import com.baufest.Libreria.service.cuentacorriente.CuentaCorrienteService;
+import com.baufest.Libreria.models.CuentaCorriente;
+import com.baufest.Libreria.repository.CuentaCorrienteRepository;
+import com.baufest.Libreria.service.CuentaCorrienteService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;

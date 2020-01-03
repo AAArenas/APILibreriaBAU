@@ -1,12 +1,9 @@
 package com.baufest.Libreria.models;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -14,8 +11,8 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id",unique=true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique=true)
     private Integer id;
 
     @Column(name="name")
@@ -32,9 +29,8 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
-    @OneToOne
-    @JoinColumn(name = "cuentaCorriente", nullable = false)
-    CuentaCorriente cuentaCorriente;
+//    @OneToOne(mappedBy = "cliente")
+//    CuentaCorriente cuentaCorriente;
 
     @Autowired
     public Cliente(Integer id, String direccion, String nombre) {

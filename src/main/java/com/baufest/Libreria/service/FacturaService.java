@@ -1,7 +1,7 @@
 package com.baufest.Libreria.service;
 
-import com.baufest.Libreria.models.Compra;
-import com.baufest.Libreria.models.Factura;
+import com.baufest.Libreria.models.*;
+import com.baufest.Libreria.repository.CompraRepository;
 import com.baufest.Libreria.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,18 @@ public class FacturaService {
 
     @Autowired
     FacturaRepository facturaRepository;
+    @Autowired
+    CompraRepository compraRepository;
+//    @Autowired
+//    CuentaCorrienteService cuentaCorrienteService;
+    @Autowired
+    ClienteService clienteService;
+    @Autowired
+    DescuentoService descuentoService;
+    @Autowired
+    ProductoService productoService;
+
+
     /*
     @Autowired
     ProductoService productoService;
@@ -41,7 +53,23 @@ public class FacturaService {
         return saveFactura(facturaUpdateable);
     }
 
-    public ResponseEntity<Factura> saveFactura(Factura factura){
+    public ResponseEntity<Factura> saveFactura(Factura facturaVirtual){
+
+        facturaVirtual.cargarCliente(clienteService);
+//        facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
+        facturaVirtual.cargarDescuentos(descuentoService);
+        this.calcularMontoTotal(facturaVirtual);
+        List<Compra> compras = facturaVirtual.getCompras();
+        for(int i = 0; i < compras.size(); i++) {
+            compras.get(i).cargarProducto(productoService);
+        }
+        Factura factura = facturaRepository.save(facturaVirtual);
+        for(int i = 0; i < compras.size(); i++){
+           // compras.get(i).cargarProducto(productoService);
+            compras.get(i).setFactura(factura);
+            compraRepository.save((compras.get(i)));
+        }
+
         return ResponseEntity.ok(
                 facturaRepository.save(factura)
         );
@@ -51,6 +79,27 @@ public class FacturaService {
         facturaRepository.deleteById(id);
         return ResponseEntity.ok(1);
     }
+
+    public ResponseEntity<Factura> calcularMontoTotal(Factura factura){
+
+        double montoTotal = 0;
+        List<Compra> compras = factura.getCompras();
+        int cantCompras = compras.size();
+
+        for(int i = 0; i < cantCompras; i++){
+            montoTotal += compras.get(i).total();
+        }
+        factura.setMontoTotal(montoTotal);
+        factura.aplicarDescuentos();
+        return ResponseEntity.ok(factura);
+    }
+
+    private void aplicarDescuentos(Factura factura) {
+        factura.aplicarDescuentos();
+    }
+
+
+
 
     /*
     public ResponseEntity<ArrayList<Producto>> MostrarFactura(){
@@ -92,4 +141,5 @@ public class FacturaService {
         return this;
     }
     */
+
 }

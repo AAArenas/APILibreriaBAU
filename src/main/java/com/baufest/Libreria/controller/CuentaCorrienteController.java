@@ -1,15 +1,16 @@
-package com.baufest.Libreria.controller;
+/*package com.baufest.Libreria.controller;
 
-import com.baufest.Libreria.models.cuentacorriente.CuentaCorriente;
-import com.baufest.Libreria.service.cuentacorriente.CuentaCorrienteService;
+import com.baufest.Libreria.models.CuentaCorriente;
+import com.baufest.Libreria.service.CuentaCorrienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+*//*
 @RequestMapping("api/v1/cuentacorriente")
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
 public class CuentaCorrienteController {
 
@@ -40,7 +41,16 @@ public class CuentaCorrienteController {
         } else {
             return ResponseEntity.noContent().build();
         }
+    }
 
+    @GetMapping (path = "/clienteid/{clienteid}")
+    public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteid") Integer id){
+        Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(id);
+        if (optionalCuentaCorriente.isPresent()){
+            return ResponseEntity.ok(optionalCuentaCorriente.get());
+        } else {
+            return ResponseEntity.noContent().build();
+        }
     }
 
     /*    @PutMapping
@@ -55,7 +65,7 @@ public class CuentaCorrienteController {
 
 
      */
-
+/*
     @DeleteMapping
     public int deleteById(@RequestParam Integer id){
         Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
@@ -66,5 +76,4 @@ public class CuentaCorrienteController {
 
 
 }
-
-
+*/

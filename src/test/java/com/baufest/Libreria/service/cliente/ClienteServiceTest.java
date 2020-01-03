@@ -2,13 +2,9 @@ package com.baufest.Libreria.service.cliente;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.repository.ClienteRepository;
+import com.baufest.Libreria.service.ClienteService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

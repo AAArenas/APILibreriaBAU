@@ -1,12 +1,10 @@
 package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.Cliente;
-import com.baufest.Libreria.service.cliente.ClienteService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.baufest.Libreria.service.ClienteService;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("api/v1/cliente")
