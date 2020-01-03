@@ -56,7 +56,7 @@ public class FacturaService {
     public ResponseEntity<Factura> saveFactura(Factura facturaVirtual){
 
         facturaVirtual.cargarCliente(clienteService);
-//        facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
+//      facturaVirtual.cargarCuentaCorriente(cuentaCorrienteService);
         facturaVirtual.cargarDescuentos(descuentoService);
         this.calcularMontoTotal(facturaVirtual);
         List<Compra> compras = facturaVirtual.getCompras();
@@ -65,7 +65,7 @@ public class FacturaService {
         }
         Factura factura = facturaRepository.save(facturaVirtual);
         for(int i = 0; i < compras.size(); i++){
-           // compras.get(i).cargarProducto(productoService);
+            //compras.get(i).cargarProducto(productoService);
             compras.get(i).setFactura(factura);
             compraRepository.save((compras.get(i)));
         }
@@ -97,8 +97,6 @@ public class FacturaService {
     private void aplicarDescuentos(Factura factura) {
         factura.aplicarDescuentos();
     }
-
-
 
 
     /*
