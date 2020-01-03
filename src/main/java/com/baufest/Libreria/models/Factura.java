@@ -134,4 +134,11 @@ public class Factura {
         return descuentos;
     }
 
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+
+    public void setClienteId(Integer id) {
+        this.clienteId = id;
+    }
 }

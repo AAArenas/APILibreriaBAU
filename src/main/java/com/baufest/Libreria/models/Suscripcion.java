@@ -40,15 +40,20 @@ public class Suscripcion {
     @Transient
     Integer productoId;
 
+    @Column(name = "anual")
+    private boolean anual;
+
     public Suscripcion(@JsonProperty("cantidadMensual") Integer cantidadMensual,
                        @JsonProperty("finSuscripcion") LocalDate finSuscripcion,
                        @JsonProperty("clienteId") Integer clienteId,
-                       @JsonProperty("productoId") Integer productoId){
+                       @JsonProperty("productoId") Integer productoId,
+                       @JsonProperty("anual") boolean anual){
 
         this.cantidadMensual = cantidadMensual;
         this.finSuscripcion = finSuscripcion;
         this.clienteId = clienteId;
         this.productoId = productoId;
+        this.anual = anual;
     }
 
     public Suscripcion(){}
@@ -91,11 +96,12 @@ public class Suscripcion {
         this.cantidadMensual = cantidadMensual;
     }
 
-    public Integer getCantidadSemanal() {
+    public Integer getCantidadMensual() {
         return cantidadMensual;
     }
 
-   /* public Integer getClienteId() {
+/*
+    public Integer getClienteId() {
         return this.clienteId;
     }
 
@@ -103,6 +109,7 @@ public class Suscripcion {
         return this.productoId;
     }
 */
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
@@ -117,6 +124,10 @@ public class Suscripcion {
 
     public void cargarProducto(ProductoService productoService) {
         this.producto = productoService.getProducto(this.productoId).getBody();
+    }
+
+    public boolean getAnual(){
+        return anual;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.baufest.Libreria.controller;
 
 
+import com.baufest.Libreria.models.Factura;
 import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.service.SuscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class SuscripcionController {
     @PutMapping(path = "{Id}")
     public ResponseEntity<Suscripcion> updateSuscripcion(@PathVariable("Id") Integer Id, @RequestBody Suscripcion suscripcion){
         return suscripcionService.update(Id, suscripcion);
+    }
+
+    @RequestMapping(path = "{Id}/generarFactura")
+    public ResponseEntity<Factura> generarFactura(@PathVariable("Id") Integer Id){
+        return suscripcionService.generarFactura(Id);
     }
 }

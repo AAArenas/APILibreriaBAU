@@ -1,14 +1,17 @@
 package com.baufest.Libreria.service;
 
+import com.baufest.Libreria.models.Compra;
+import com.baufest.Libreria.models.Descuento;
+import com.baufest.Libreria.models.Factura;
 import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.SuscripcionRepository;
-import com.baufest.Libreria.service.ProductoService;
-import com.baufest.Libreria.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,4 +68,22 @@ public class SuscripcionService {
             return ResponseEntity.notFound().build();
         }
     }
+
+    public ResponseEntity<Factura> generarFactura(Integer id) {
+
+        Suscripcion suscripcion = this.getSuscripcionById(id).getBody();
+        Compra compra = new Compra();
+        Factura factura = new Factura();
+        List<Compra> compras = new ArrayList<>();
+
+        compra.setProductoId(suscripcion.getProducto().getId());
+        compra.setCantidad(suscripcion.getCantidadMensual());
+        compras.add(compra);
+
+        factura.setCompras(compras);
+        factura.setClienteId(suscripcion.getCliente().getId());
+
+        return ResponseEntity.ok(factura);
+    }
+
 }

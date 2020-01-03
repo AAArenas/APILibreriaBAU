@@ -64,4 +64,16 @@ public class Compra {
     public void cargarProducto(ProductoService productoService) {
         producto = productoService.getProducto(productoId).getBody();
     }
+
+    public void setProducto(Producto producto){
+        this.producto = producto;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setProductoId(Integer id) {
+        this.productoId = id;
+    }
 }
