@@ -3,6 +3,7 @@ package com.baufest.Libreria.controller;
 import com.baufest.Libreria.models.Factura;
 import com.baufest.Libreria.service.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.query.Jpa21Utils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,10 @@ public class FacturaController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteFactura(@PathVariable Integer id) {
         return facturaService.deleteFactura(id);
+    }
+
+    @RequestMapping(value = "/{id}/pagar", method = RequestMethod.GET)
+    public ResponseEntity<Factura> pagarFactura(@PathVariable Integer id) {
+        return facturaService.pagarFactura(id);
     }
 }
