@@ -19,9 +19,9 @@ public class Producto {
 
     @NotBlank
     @Column(name = "nombre", nullable = false, length = 30)
+    private String nombre;
 
     @NotBlank
-    private String nombre;
     @Column(name = "tipo", nullable = false, length = 30)
     private String tipo;
 
