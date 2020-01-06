@@ -141,4 +141,9 @@ public class Factura {
     public void setClienteId(Integer id) {
         this.clienteId = id;
     }
+
+    public Cliente getCliente(){
+        return this.cliente;
+    }
+
 }
