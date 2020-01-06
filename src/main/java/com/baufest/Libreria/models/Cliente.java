@@ -24,7 +24,7 @@ public class Cliente {
     private String direccion;
 
     @OneToMany(mappedBy = "cliente")
-    private List<SuscripcionDB> suscripciones;
+    private List<Suscripcion> suscripciones;
 
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
