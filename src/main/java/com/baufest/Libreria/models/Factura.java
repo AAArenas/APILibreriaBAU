@@ -146,4 +146,7 @@ public class Factura {
         return this.cliente;
     }
 
+    public void setDescuentos(List<Descuento> descuentos) {
+        this.descuentos = descuentos;
+    }
 }

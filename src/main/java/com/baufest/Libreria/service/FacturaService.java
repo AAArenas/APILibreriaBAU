@@ -50,10 +50,10 @@ public class FacturaService {
     public ResponseEntity<Factura> updateFactura(Integer id, Factura factura) {
         Factura facturaUpdateable = getFactura(id).getBody();
 
-        facturaUpdateable.setFecha(factura.getFecha());
-        facturaUpdateable.setMontoTotal(factura.getMontoTotal());
-        facturaUpdateable.setCompras(factura.getCompras());
-        facturaUpdateable.setCompras(factura.getCompras());
+        facturaUpdateable.setDescuentos(factura.getDescuentos());
+  //    facturaUpdateable.setFecha(factura.getFecha());
+        this.calcularMontoTotal(facturaUpdateable);
+  //    facturaUpdateable.setCompras(factura.getCompras());
 
         return saveFactura(facturaUpdateable);
     }
