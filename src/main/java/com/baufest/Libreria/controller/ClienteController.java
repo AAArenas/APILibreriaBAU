@@ -1,6 +1,7 @@
 package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.Cliente;
+import com.baufest.Libreria.models.ClienteModel;
 import com.baufest.Libreria.service.ClienteService;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,8 @@ public class ClienteController {
     }
 
     @PostMapping
-    public Cliente crearCliente(@NonNull @RequestBody Cliente cliente){
+    public Cliente crearCliente(@NonNull @RequestBody ClienteModel clienteModel){
+        Cliente cliente = new Cliente(clienteModel);
         return clienteService.crearCliente(cliente);
     }
 

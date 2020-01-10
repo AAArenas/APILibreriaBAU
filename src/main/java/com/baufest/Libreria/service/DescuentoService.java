@@ -9,11 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.baufest.Libreria.session.HibernateUtil;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DescuentoService {
+
+
 
     @Autowired
     DescuentoRepository descuentoRepository;
@@ -21,7 +29,29 @@ public class DescuentoService {
     //todo: hacer crud
 
     public ResponseEntity<Descuento> crearDescuento(Descuento descuento){
-        return ResponseEntity.ok(descuentoRepository.save(descuento));
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+
+            // start a transaction
+            transaction = session.beginTransaction();
+
+            // save the descuento object
+            session.save(descuento);
+
+            // commit transaction
+            transaction.commit();
+            return ResponseEntity.ok(descuento);
+        } catch (Exception e) {
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+        }
+
+
+      //  return ResponseEntity.ok(descuentoRepository.save(descuento));
     }
 
     public ResponseEntity<List<Descuento>> obtenerDescuentos() {

@@ -100,7 +100,7 @@ public class Suscripcion {
         return cantidadMensual;
     }
 
-/*
+
     public Integer getClienteId() {
         return this.clienteId;
     }
@@ -108,7 +108,7 @@ public class Suscripcion {
     public Integer getProductoId() {
         return this.productoId;
     }
-*/
+
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;

@@ -6,48 +6,34 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-@Entity
-@Table(name="clientes")
-public class Cliente {
+public class ClienteModel {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",unique=true)
+
     private Integer id;
 
-    @Column(name="name")
-    @NotBlank
+
     private String name;
 
-    @Column(name="direccion")
-    @NotBlank
+
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente")
     private List<Suscripcion> suscripciones;
 
-    @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
 //    @OneToOne(mappedBy = "cliente")
 //    CuentaCorriente cuentaCorriente;
 
     @Autowired
-    public Cliente(Integer id, String direccion, String nombre) {
+    public ClienteModel(Integer id, String direccion, String nombre) {
         this.id = id;
         this.direccion = direccion;
         this.name = nombre;
     }
 
     @Autowired
-    public Cliente(){
+    public ClienteModel(){
 
-    }
-
-    public Cliente (ClienteModel clienteModel){
-      //  this.id = clienteModel.getId();
-        this.direccion = clienteModel.getDireccion();
-        this.name = clienteModel.getName();
     }
 
     public Integer getId() {

@@ -1,12 +1,10 @@
 package com.baufest.Libreria.service;
 
-import com.baufest.Libreria.models.Compra;
-import com.baufest.Libreria.models.Descuento;
-import com.baufest.Libreria.models.Factura;
-import com.baufest.Libreria.models.Suscripcion;
+import com.baufest.Libreria.models.*;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,8 +20,12 @@ public class SuscripcionService {
     ClienteService clienteService;
     @Autowired
     ProductoService productoService;
+    //@Autowired
+    //JpaRepository<Suscripcion, Integer> repository;
+
     @Autowired
     SuscripcionRepository suscripcionRepository;
+
 
     public ResponseEntity<List<Suscripcion>> getAllSuscripcions() {
         List<Suscripcion> suscripciones = suscripcionRepository.findAll();
