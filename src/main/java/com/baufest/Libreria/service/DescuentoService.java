@@ -16,6 +16,8 @@ import org.hibernate.Transaction;
 import com.baufest.Libreria.session.HibernateUtil;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,8 +63,33 @@ public class DescuentoService {
         //return ResponseEntity.ok(descuentoRepository.save(descuento));
     }
 
+    private static <T> List<T> loadAllData(Class<T> type, Session session) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> criteria = builder.createQuery(type);
+        criteria.from(type);
+        List<T> data = session.createQuery(criteria).getResultList();
+        return data;
+    }
+
     public ResponseEntity<List<Descuento>> obtenerDescuentos() {
-        return ResponseEntity.ok(descuentoRepository.findAll());
+        Transaction transaction = null;
+        HibernateUtil hu = new HibernateUtil();
+        try (Session session = hu.getSessionFactory().openSession()){
+            System.out.println("session " + session);
+
+            transaction = session.beginTransaction();
+            List<Descuento> descuentos= loadAllData(Descuento.class, session);
+            System.out.println("-----------OK---------------");
+            transaction.commit();
+            return ResponseEntity.ok(descuentos);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+        }
     }
 
     public ResponseEntity<Descuento> getDescuentoById(Integer id) {
