@@ -26,7 +26,6 @@ public class Descuento implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @NotBlank
     @Column(name = "valor_descuento")
     private double valorDescuento;
 

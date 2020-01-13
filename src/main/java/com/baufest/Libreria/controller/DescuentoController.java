@@ -41,7 +41,7 @@ public class DescuentoController {
 
     @DeleteMapping(value = "{descuentoId}")
     //@RequestMapping(value = "{suscripcionId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> deleteDescuento(@PathVariable("descuentoId") Integer descuentoId){
+    public ResponseEntity<Descuento> deleteDescuento(@PathVariable("descuentoId") Integer descuentoId){
        return descuentoService.delete(descuentoId);
     }
 
