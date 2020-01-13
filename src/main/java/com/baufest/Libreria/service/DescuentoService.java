@@ -66,7 +66,24 @@ public class DescuentoService {
     }
 
     public ResponseEntity<Descuento> getDescuentoById(Integer id) {
-        return ResponseEntity.ok(descuentoRepository.findById(id).get());
+        Transaction transaction = null;
+        HibernateUtil hu = new HibernateUtil();
+        try (Session session = hu.getSessionFactory().openSession()){
+            System.out.println("session " + session);
+
+            transaction = session.beginTransaction();
+            Descuento descuento = (Descuento) session.get(Descuento.class,id);
+            System.out.println("-----------OK---------------");
+            transaction.commit();
+            return ResponseEntity.ok(descuento);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
+        }
     }
 
     public  ResponseEntity<Descuento> delete(Integer descuentoId) {
