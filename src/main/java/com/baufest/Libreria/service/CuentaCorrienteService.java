@@ -1,4 +1,4 @@
-/*package com.baufest.Libreria.service;
+package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.repository.CuentaCorrienteRepository;
@@ -8,25 +8,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-*//*
+
 @Service
 public class CuentaCorrienteService {
 
-    @Autowired
+  /*  @Autowired
     ClienteService clienteService;
-
+*/
     @Autowired
-    private final CuentaCorrienteRepository cuentaCorrienteRepository;
-
-    public CuentaCorrienteService(CuentaCorrienteRepository cuentaCorrienteRepository) {
-        this.cuentaCorrienteRepository = cuentaCorrienteRepository;
-    }
+    CuentaCorrienteRepository cuentaCorrienteRepository;
 
     public CuentaCorriente addCuentaCorriente(CuentaCorriente cuentaCorriente){
-        cuentaCorriente.cargarCliente(clienteService);
         return cuentaCorrienteRepository.save(cuentaCorriente);
     }
-
 
     public List<CuentaCorriente> findAll(){
         List<CuentaCorriente> cuentasCorrientes = cuentaCorrienteRepository.findAll();
@@ -49,22 +43,19 @@ public class CuentaCorrienteService {
 
     }
 
+    /*
     public Optional<CuentaCorriente> getCuentaCorrienteByClienteId(Integer id){
         return cuentaCorrienteRepository.findByClienteId(id);
     }
 
-
- /*   public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
+*/
+/*  public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
         CuentaCorriente cuentaToUpdate = cuentaCorrienteRepository.findById(id).get();
         cuentaToUpdate.setId(id);
-        cuentaToUpdate.setName(cuentaCorriente.getName());
         cuentaCorrienteRepository.save(cuentaToUpdate);
         return cuentaCorrienteRepository.findById(id);
     }
 
-
-  */
-
-/*
-}
 */
+
+}

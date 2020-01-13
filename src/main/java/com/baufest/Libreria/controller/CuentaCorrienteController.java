@@ -1,4 +1,4 @@
-/*package com.baufest.Libreria.controller;
+package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.service.CuentaCorrienteService;
@@ -8,18 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-*//*
+
 @RequestMapping("api/v1/cuentacorriente")
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
 public class CuentaCorrienteController {
 
-    private final CuentaCorrienteService cuentaCorrienteService;
-
     @Autowired
-    public CuentaCorrienteController(CuentaCorrienteService cuentaCorrienteService) {
-        this.cuentaCorrienteService = cuentaCorrienteService;
-    }
+    CuentaCorrienteService cuentaCorrienteService;
+
 
     @PostMapping
     public ResponseEntity<CuentaCorriente> addCuentaCorriente(@RequestBody CuentaCorriente cuentaCorriente){
@@ -44,6 +41,7 @@ public class CuentaCorrienteController {
         }
     }
 
+    /*
     @GetMapping (path = "/clienteid/{clienteid}")
     public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteid") Integer id){
         Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(id);
@@ -54,7 +52,9 @@ public class CuentaCorrienteController {
         }
     }
 
-    /*    @PutMapping
+*/
+  /*
+   @PutMapping
         public ResponseEntity<CuentaCorriente> updateCuentaCorriente(@RequestParam Integer id, @RequestBody CuentaCorriente cuentaCorrienteToUpdate) {
             Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
             if (optionalCuentaCorriente.isPresent()){
@@ -63,12 +63,12 @@ public class CuentaCorrienteController {
                 return ResponseEntity.noContent().build();
             }
         }
+*/
 
 
-     */
-/*
-    @DeleteMapping
-    public int deleteById(@RequestParam Integer id){
+
+    @DeleteMapping(value ="{id}")
+    public int deleteById(@PathVariable("id") Integer id){
         Optional<CuentaCorriente> cuentaEncontrada = cuentaCorrienteService.getCuentaCorrienteById(id);
         cuentaCorrienteService.deleteById(cuentaEncontrada);
         return 1;
@@ -77,4 +77,3 @@ public class CuentaCorrienteController {
 
 
 }
-*/
