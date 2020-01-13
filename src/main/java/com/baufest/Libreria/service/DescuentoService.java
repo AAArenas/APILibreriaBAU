@@ -31,7 +31,7 @@ public class DescuentoService {
 
     //todo: hacer crud
 
-    public ResponseEntity<Descuento> crearDescuento(Descuento descuento){
+    public ResponseEntity<Descuento> saveOrUpdateDescuento(Descuento descuento){
 
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
@@ -43,7 +43,7 @@ public class DescuentoService {
             //System.out.println("transaction " + transaction);
 
             // save the descuento object
-            session.save(descuento);
+            session.saveOrUpdate(descuento);
             System.out.println("-----------OK---------------");
             //commit transaction
             transaction.commit();
@@ -139,12 +139,14 @@ public class DescuentoService {
 
     public ResponseEntity<Descuento> update(Integer id, Descuento descuento){
         if (descuentoRepository.existsById(id)) {
-            //descuento.setId(id);
-            return ResponseEntity.ok(descuentoRepository.save(descuento));
+            descuento.setId(id);
+            System.out.println(descuento.getId());
+            return this.saveOrUpdateDescuento(descuento);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
 /*
     public String editarCliente(Integer id, Cliente cliente) {
