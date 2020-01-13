@@ -1,4 +1,4 @@
-/*package com.baufest.Libreria.repository;
+package com.baufest.Libreria.repository;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.CuentaCorriente;
@@ -14,7 +14,8 @@ import java.util.concurrent.Future;
 @Repository
 public interface CuentaCorrienteRepository extends JpaRepository <CuentaCorriente, Integer> {
 
-    @Query("select c from CuentaCorriente c where c.cliente.id = :clienteId")
+   /* @Query("select c from CuentaCorriente c where c.cliente.id = :clienteId")
     Optional<CuentaCorriente> findByClienteId(@Param("clienteId") Integer clienteId);
-}
 */
+}
+

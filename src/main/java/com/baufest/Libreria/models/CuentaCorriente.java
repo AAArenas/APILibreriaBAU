@@ -1,4 +1,4 @@
-/*package com.baufest.Libreria.models;
+package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Factura;
@@ -15,13 +15,15 @@ import java.util.Set;
 @Entity
 @Table (name = "cuentascorrientes")
 public class CuentaCorriente {
-*//*
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne
+
+
+   /* @OneToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
 
@@ -31,10 +33,11 @@ public class CuentaCorriente {
     @Transient
     Integer clienteId;
 
+
     public CuentaCorriente(@JsonProperty ("clienteId") Integer clienteId) {
         this.clienteId = clienteId;
     }
-
+*/
     public CuentaCorriente(){}
 
     public Integer getId() {
@@ -45,6 +48,7 @@ public class CuentaCorriente {
         this.id = id;
     }
 
+    /*
     public List<Factura> getFactura() {
         return facturas;
     }
@@ -77,4 +81,6 @@ public class CuentaCorriente {
         }
         return montoTotal;
     }
-}*/
+
+*/
+}
