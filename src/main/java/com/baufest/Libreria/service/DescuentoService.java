@@ -31,10 +31,9 @@ public class DescuentoService {
 
     public ResponseEntity<Descuento> crearDescuento(Descuento descuento){
 
-   /*     Transaction transaction = null;
+        Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
-
-        try (Session session = hu.getSessionFactory().openSession()){
+        try (        Session session = hu.getSessionFactory().openSession()){
             System.out.println("session " + session);
 
             // start a transaction
@@ -54,10 +53,12 @@ public class DescuentoService {
             }
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
-        }
+        } /*finally {
+            session.close();
+        }*/
 
-*/
-        return ResponseEntity.ok(descuentoRepository.save(descuento));
+
+        //return ResponseEntity.ok(descuentoRepository.save(descuento));
     }
 
     public ResponseEntity<List<Descuento>> obtenerDescuentos() {
@@ -79,7 +80,7 @@ public class DescuentoService {
 
     public ResponseEntity<Descuento> update(Integer id, Descuento descuento){
         if (descuentoRepository.existsById(id)) {
-            descuento.setId(id);
+            //descuento.setId(id);
             return ResponseEntity.ok(descuentoRepository.save(descuento));
         } else {
             return ResponseEntity.notFound().build();

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.type.descriptor.sql.NVarcharTypeDescriptor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,15 @@ public class Descuento implements Serializable {
     @Column(name = "id")
     public Integer id;
 
-    @ManyToMany(mappedBy = "descuentos")
-    private List<Factura> facturas = new ArrayList<>();
+   // @ManyToMany(mappedBy = "descuentos")
+   // private List<Factura> facturas = new ArrayList<>();
 
+    @NotBlank
     @Column(name = "descripcion")
-    private  String descripcion;
+    private String descripcion;
 
-    @Column(name = "valorDescuento")
+    @NotBlank
+    @Column(name = "valor_descuento")
     private double valorDescuento;
 
     public Descuento(@JsonProperty("valorDescuento") double valorDescuento, @JsonProperty("descripcion") String descripcion){

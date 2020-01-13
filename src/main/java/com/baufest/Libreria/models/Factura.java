@@ -37,13 +37,13 @@ public class Factura {
     @ManyToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
-
+/*
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "factura_descuento",
             joinColumns = {@JoinColumn(referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
     private List<Descuento> descuentos = new ArrayList<>();
-
+*/
     @Transient
     Integer clienteId;
 
@@ -57,7 +57,7 @@ public class Factura {
     }
 
     public Factura(@JsonProperty("compras") List<Compra> compras, @JsonProperty("descuentosId") List<Integer> descuentosId, @JsonProperty("clienteId") Integer clienteId, @JsonProperty("pagado") boolean pagado) {
-        this.descuentosId = descuentosId;
+       // this.descuentosId = descuentosId;
         this.fecha = LocalDate.now();
         this.compras = compras;
         this.clienteId = clienteId;
@@ -105,10 +105,10 @@ public class Factura {
     }
 
     public void cargarDescuentos(DescuentoService descuentoService){
-        Integer cantDescuentos = this.descuentosId.size();
+     /*   Integer cantDescuentos = this.descuentosId.size();
         for (int i = 0 ; i<cantDescuentos; i++){
             this.descuentos.add(descuentoService.getDescuentoById(descuentosId.get(i)).getBody());
-        }
+        }*/
     }
 
     public Integer getId() {
@@ -116,10 +116,10 @@ public class Factura {
     }
 
     public void aplicarDescuentos() {
-        int cantDescuentos = descuentos.size();
+      /*  int cantDescuentos = descuentos.size();
         for (int i = 0 ; i < cantDescuentos; i++){
             montoTotal = descuentos.get(i).aplicarDescuento(montoTotal);
-        }
+        }*/
     }
 
     public void pagar(){
@@ -129,11 +129,11 @@ public class Factura {
     public boolean getPagado(){
         return pagado;
     }
-
+/*
     public List<Descuento> getDescuentos(){
         return descuentos;
     }
-
+*/
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }
@@ -145,8 +145,9 @@ public class Factura {
     public Cliente getCliente(){
         return this.cliente;
     }
-
+/*
     public void setDescuentos(List<Descuento> descuentos) {
         this.descuentos = descuentos;
     }
+    */
 }
