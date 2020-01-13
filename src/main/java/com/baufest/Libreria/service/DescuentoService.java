@@ -2,6 +2,7 @@ package com.baufest.Libreria.service;
 
 
 import com.baufest.Libreria.models.Descuento;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.DescuentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,19 +31,24 @@ public class DescuentoService {
 
     public ResponseEntity<Descuento> crearDescuento(Descuento descuento){
 
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+   /*     Transaction transaction = null;
+        HibernateUtil hu = new HibernateUtil();
+
+        try (Session session = hu.getSessionFactory().openSession()){
+            System.out.println("session " + session);
 
             // start a transaction
             transaction = session.beginTransaction();
+            //System.out.println("transaction " + transaction);
 
             // save the descuento object
             session.save(descuento);
-
-            // commit transaction
+            System.out.println("-----------OK---------------");
+            //commit transaction
             transaction.commit();
             return ResponseEntity.ok(descuento);
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null){
                 transaction.rollback();
             }
@@ -50,8 +56,8 @@ public class DescuentoService {
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
         }
 
-
-      //  return ResponseEntity.ok(descuentoRepository.save(descuento));
+*/
+        return ResponseEntity.ok(descuentoRepository.save(descuento));
     }
 
     public ResponseEntity<List<Descuento>> obtenerDescuentos() {
@@ -71,7 +77,17 @@ public class DescuentoService {
         }
     }
 
-/*    public String editarCliente(Integer id, Cliente cliente) {
+    public ResponseEntity<Descuento> update(Integer id, Descuento descuento){
+        if (descuentoRepository.existsById(id)) {
+            descuento.setId(id);
+            return ResponseEntity.ok(descuentoRepository.save(descuento));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+/*
+    public String editarCliente(Integer id, Cliente cliente) {
         if(cliente.getId() != null) {
             return "El id no puede estar en el body";
         } else {

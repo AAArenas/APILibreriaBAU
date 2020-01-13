@@ -15,17 +15,17 @@
         <property name="hibernate.connection.password">r10kusho420$</property>
 
         <!-- Specifying Session Context -->
-        <!-- <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>-->
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
          <!-- Mapping With Model Class Containing Annotations -->
-        <mapping class="com.baufest.Libreria.models.Descuento" />
-        <mapping class="com.baufest.Libreria.models.Factura" />
-        <mapping class="com.baufest.Libreria.models.Cliente" />
-        <mapping class="com.baufest.Libreria.models.Compra" />
-        <mapping class="com.baufest.Libreria.models.Producto" />
-        <mapping class="com.baufest.Libreria.models.Suscripcion" />
-        <mapping class="com.baufest.Libreria.models.TipoProducto" />
-
+             <mapping class="com.baufest.Libreria.models.Descuento" />
+             <!--<mapping class="com.baufest.Libreria.models.Factura" />
+             <mapping class="com.baufest.Libreria.models.Cliente" />
+             <mapping class="com.baufest.Libreria.models.Compra" />
+             <mapping class="com.baufest.Libreria.models.Producto" />
+             <mapping class="com.baufest.Libreria.models.Suscripcion" />
+             <mapping class="com.baufest.Libreria.models.TipoProducto" />
+            -->
 
     </session-factory>
 </hibernate-configuration>

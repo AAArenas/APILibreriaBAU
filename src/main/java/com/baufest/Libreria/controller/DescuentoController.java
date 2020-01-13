@@ -6,6 +6,7 @@ import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.service.DescuentoService;
 import com.baufest.Libreria.service.SuscripcionService;
 import javassist.runtime.Desc;
+import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,32 +21,32 @@ public class DescuentoController {
     @Autowired
     DescuentoService descuentoService ;
 
-    //List all suscripcion
+    //List all descuentos
     @GetMapping
     public ResponseEntity<List<Descuento>> getAllSuscripcions(){
             return descuentoService.obtenerDescuentos();
     }
 
-    //List one suscripcion
-    @RequestMapping(value = "{suscripcionId}", method = RequestMethod.GET)
-    public ResponseEntity<Descuento> getSuscripcion(@PathVariable("descuentoId") Integer descuentoId){
+    //List one descuento
+    @RequestMapping(value = "{descuentoId}", method = RequestMethod.GET)
+    public ResponseEntity<Descuento> getDescuento(@PathVariable("descuentoId") Integer descuentoId){
         return descuentoService.getDescuentoById(descuentoId);
     }
 
-    //Create new suscripcion
+    //Create new Descuento
     @PostMapping
-    public ResponseEntity<Descuento> createSuscripcion(@RequestBody Descuento descuento){
+    public ResponseEntity<Descuento> createDescuento(@RequestBody Descuento descuento){
         return descuentoService.crearDescuento(descuento);
     }
 
     @DeleteMapping(value = "{descuentoId}")
     //@RequestMapping(value = "{suscripcionId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> deleteSuscripcion(@PathVariable("descuentoId") Integer descuentoId){
-        return descuentoService.delete(descuentoId);
+    public ResponseEntity<Integer> deleteDescuento(@PathVariable("descuentoId") Integer descuentoId){
+       return descuentoService.delete(descuentoId);
     }
-/*
+
     @PutMapping(path = "{Id}")
-    public ResponseEntity<Suscripcion> updateSuscripcion(@PathVariable("Id") Integer Id, @RequestBody Suscripcion suscripcion){
-        return descuentoService.update(Id, suscripcion);
-    }*/
+    public ResponseEntity<Descuento> updateDescuento(@PathVariable("Id") Integer Id, @RequestBody Descuento descuento){
+        return descuentoService.update(Id, descuento);
+    }
 }

@@ -11,16 +11,16 @@ import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
-    private static StandardServiceRegistry registry;
-    private static SessionFactory sessionFactory;
+    private StandardServiceRegistry registry;
+    private SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
 
                 //create registry
                 registry = new StandardServiceRegistryBuilder().configure().build();
-
+                System.out.println("registry: " + registry);
                 // Create MetadataSources
                 MetadataSources sources = new MetadataSources(registry);
 
@@ -28,8 +28,8 @@ public class HibernateUtil {
 
                 Metadata metadata = sources.getMetadataBuilder().build();
 
-                System.out.println(sources);
-                System.out.println(sources.getMetadataBuilder());
+                System.out.println("sources: " + sources);
+                System.out.println("metaBuilder: " + sources.getMetadataBuilder());
 
                 // Create SessionFactory
 
@@ -49,7 +49,7 @@ public class HibernateUtil {
 
     }
 
-    public static void shutdown() {
+    public void shutdown() {
         if (registry != null){
             StandardServiceRegistryBuilder.destroy(registry);
         }

@@ -5,23 +5,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.type.descriptor.sql.NVarcharTypeDescriptor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name= "Descuento")
-public class Descuento {
+@Table(name= "descuento")
+public class Descuento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",unique=true)
-    private Integer id;
+    @Column(name = "id")
+    public Integer id;
 
     @ManyToMany(mappedBy = "descuentos")
     private List<Factura> facturas = new ArrayList<>();
 
     @Column(name = "descripcion")
-    private String descripcion;
+    private  String descripcion;
 
     @Column(name = "valorDescuento")
     private double valorDescuento;
@@ -33,19 +34,32 @@ public class Descuento {
 
     public Descuento(){}
 
-    public double aplicarDescuento(double monto){
-        return (monto - monto*valorDescuento);
-    }
-
     public Integer getId(){
         return this.id;
+    }
+
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public String getDescripcion(){
         return this.descripcion;
     }
 
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
+    }
+
     public double getValorDescuento() {
         return valorDescuento;
     }
+
+    public void setValorDescuento(double valorDescuento){
+        this.valorDescuento = valorDescuento;
+    }
+
+    public double aplicarDescuento(double monto){
+        return (monto - monto*valorDescuento);
+    }
+
 }
