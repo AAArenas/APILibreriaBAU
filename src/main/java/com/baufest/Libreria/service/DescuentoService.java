@@ -35,7 +35,7 @@ public class DescuentoService {
 
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
-        try (        Session session = hu.getSessionFactory(0).openSession()){
+        try (        Session session = hu.getSessionFactory("insert").openSession()){
             System.out.println("session " + session);
 
             // start a transaction
@@ -74,7 +74,7 @@ public class DescuentoService {
     public ResponseEntity<List<Descuento>> obtenerDescuentos() {
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
-        try (Session session = hu.getSessionFactory(0).openSession()){
+        try (Session session = hu.getSessionFactory("select").openSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -95,7 +95,7 @@ public class DescuentoService {
     public ResponseEntity<Descuento> getDescuentoById(Integer id) {
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
-        try (Session session = hu.getSessionFactory(0).openSession()){
+        try (Session session = hu.getSessionFactory("select").openSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -117,7 +117,7 @@ public class DescuentoService {
 
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
-        try (        Session session = hu.getSessionFactory(0).openSession()){
+        try (        Session session = hu.getSessionFactory("delete").openSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();

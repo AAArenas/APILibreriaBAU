@@ -15,10 +15,12 @@ public class HibernateUtil {
     private StandardServiceRegistry registry;
     private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory(Integer option) {
-        Hashtable<Integer, String>
-                configs = new Hashtable<Integer, String>();
-        configs.put(0, "hibernate1.cfg.xml");
+    public SessionFactory getSessionFactory(String option) {
+        Hashtable<String, String>
+                configs = new Hashtable<String, String>();
+        configs.put("select", "hibernate1.cfg.xml");
+        configs.put("insert", "hibernate2.cfg.xml");
+        configs.put("delete", "hibernate3.cfg.xml");
 
         System.out.println("Hash code: " + option + " Hash: " + configs.get(option));
 
