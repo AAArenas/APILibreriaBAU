@@ -36,7 +36,7 @@ public class DescuentoController {
     //Create new Descuento
     @PostMapping
     public ResponseEntity<Descuento> createDescuento(@RequestBody Descuento descuento){
-        return descuentoService.crearDescuento(descuento);
+        return descuentoService.saveOrUpdateDescuento(descuento);
     }
 
     @DeleteMapping(value = "{descuentoId}")
