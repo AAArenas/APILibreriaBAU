@@ -34,14 +34,18 @@ public class Suscripcion {
     @JoinColumn(name = "cliente",nullable = false)
     private Cliente cliente;
 
+    @Column(name = "anual")
+    private boolean anual;
+
+    @Column(name = "direccion_de_entrega")
+    private String direccionDeEntrega;
+
     @Transient
     Integer clienteId;
 
     @Transient
     Integer productoId;
 
-    @Column(name = "anual")
-    private boolean anual;
 
     public Suscripcion(@JsonProperty("cantidadMensual") Integer cantidadMensual,
                        @JsonProperty("finSuscripcion") LocalDate finSuscripcion,
@@ -100,7 +104,7 @@ public class Suscripcion {
         return cantidadMensual;
     }
 
-
+/*
     public Integer getClienteId() {
         return this.clienteId;
     }
@@ -108,7 +112,7 @@ public class Suscripcion {
     public Integer getProductoId() {
         return this.productoId;
     }
-
+*/
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
@@ -120,6 +124,7 @@ public class Suscripcion {
 
     public void cargarCliente(ClienteService clienteService) {
         this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
+        this.direccionDeEntrega = this.cliente.getDireccion();
     }
 
     public void cargarProducto(ProductoService productoService) {
@@ -130,4 +135,11 @@ public class Suscripcion {
         return anual;
     }
 
+    public String getDireccionDeEntrega() {
+        return direccionDeEntrega;
+    }
+
+    public void setDireccionDeEntrega(String direccionDeEntrega) {
+        this.direccionDeEntrega = direccionDeEntrega;
+    }
 }

@@ -1,4 +1,4 @@
-package com.baufest.Libreria.controller;
+/*package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.service.CuentaCorrienteService;
@@ -41,7 +41,7 @@ public class CuentaCorrienteController {
         }
     }
 
-    /*
+
     @GetMapping (path = "/clienteid/{clienteid}")
     public ResponseEntity<CuentaCorriente> getCuentaCorrienteByClienteId(@PathVariable("clienteid") Integer id){
         Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(id);
@@ -52,8 +52,8 @@ public class CuentaCorrienteController {
         }
     }
 
-*/
-  /*
+
+
    @PutMapping
         public ResponseEntity<CuentaCorriente> updateCuentaCorriente(@RequestParam Integer id, @RequestBody CuentaCorriente cuentaCorrienteToUpdate) {
             Optional<CuentaCorriente> optionalCuentaCorriente = cuentaCorrienteService.getCuentaCorrienteById(id);
@@ -63,7 +63,7 @@ public class CuentaCorrienteController {
                 return ResponseEntity.noContent().build();
             }
         }
-*/
+
 
 
 
@@ -77,3 +77,4 @@ public class CuentaCorrienteController {
 
 
 }
+*/

@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service;
+/*package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.models.CuentaCorriente;
 import com.baufest.Libreria.repository.CuentaCorrienteRepository;
@@ -12,9 +12,9 @@ import java.util.Optional;
 @Service
 public class CuentaCorrienteService {
 
-  /*  @Autowired
+    @Autowired
     ClienteService clienteService;
-*/
+
     @Autowired
     CuentaCorrienteRepository cuentaCorrienteRepository;
 
@@ -48,14 +48,15 @@ public class CuentaCorrienteService {
         return cuentaCorrienteRepository.findByClienteId(id);
     }
 
-*/
-/*  public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
+
+  public Optional<CuentaCorriente> updateCuentaCorriente (Integer id, CuentaCorriente cuentaCorriente){
         CuentaCorriente cuentaToUpdate = cuentaCorrienteRepository.findById(id).get();
         cuentaToUpdate.setId(id);
         cuentaCorrienteRepository.save(cuentaToUpdate);
         return cuentaCorrienteRepository.findById(id);
     }
 
-*/
+
 
 }
+*/

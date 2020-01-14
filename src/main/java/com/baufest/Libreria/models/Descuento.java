@@ -1,11 +1,11 @@
 package com.baufest.Libreria.models;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.type.descriptor.sql.NVarcharTypeDescriptor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

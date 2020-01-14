@@ -2,7 +2,9 @@ package com.baufest.Libreria.controller;
 
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.ClienteModel;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.service.ClienteService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +22,18 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    /*
     @PostMapping
     public Cliente crearCliente(@NonNull @RequestBody ClienteModel clienteModel){
         Cliente cliente = new Cliente(clienteModel);
         return clienteService.crearCliente(cliente);
+    }*/
+
+
+    @PostMapping
+    public ResponseEntity<Cliente> crearCliente(@NonNull @RequestBody ClienteModel clienteModel) {
+        Cliente cliente = new Cliente(clienteModel);
+        return clienteService.crearOActualizarCliente(cliente);
     }
 
     @GetMapping
@@ -41,9 +51,14 @@ public class ClienteController {
         return clienteService.borrarClienteId(id);
     }
 
-    @PostMapping(path="/{id}")
-    public String editarcliente(@PathVariable("id") Integer id,@NonNull @RequestBody Cliente cliente) {
+    @PutMapping(path="/{id}")
+    public ResponseEntity<Cliente> editarcliente(@PathVariable("id") Integer id, @NonNull @RequestBody Cliente cliente) {
         return clienteService.editarCliente(id,cliente);
+    }
+
+    @GetMapping(path = "/{id}/suscripciones")
+    public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(@PathVariable ("id") Integer id){
+        return clienteService.listarSuscripcionesByClienteId(id);
     }
 
 }

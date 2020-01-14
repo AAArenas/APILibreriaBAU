@@ -17,7 +17,7 @@
         <!-- <property name="hbm2ddl.auto">none</property>-->
 
 
-         <!-- Specifying Session Context -->
+        <!-- Specifying Session Context -->
         <!-- <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>-->
 
         <!-- Mapping With Model Class Containing Annotations -->

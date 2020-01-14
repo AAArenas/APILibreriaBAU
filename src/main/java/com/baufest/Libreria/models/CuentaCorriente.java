@@ -1,5 +1,6 @@
-package com.baufest.Libreria.models;
 
+package com.baufest.Libreria.models;
+/*
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Factura;
 import com.baufest.Libreria.service.ClienteService;
@@ -23,7 +24,7 @@ public class CuentaCorriente {
 
 
 
-   /* @OneToOne
+    @OneToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
 
@@ -37,7 +38,7 @@ public class CuentaCorriente {
     public CuentaCorriente(@JsonProperty ("clienteId") Integer clienteId) {
         this.clienteId = clienteId;
     }
-*/
+
     public CuentaCorriente(){}
 
     public Integer getId() {
@@ -48,7 +49,7 @@ public class CuentaCorriente {
         this.id = id;
     }
 
-    /*
+
     public List<Factura> getFactura() {
         return facturas;
     }
@@ -82,5 +83,6 @@ public class CuentaCorriente {
         return montoTotal;
     }
 
-*/
+
 }
+*/
