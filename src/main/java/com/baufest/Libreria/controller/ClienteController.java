@@ -58,6 +58,7 @@ public class ClienteController {
 
     @GetMapping(path = "/{id}/suscripciones")
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(@PathVariable ("id") Integer id){
+        System.out.println("--ok--");
         return clienteService.listarSuscripcionesByClienteId(id);
     }
 

@@ -131,19 +131,17 @@ public class ClienteService {
 
 
 
-  /*  public String editarCliente(Integer id, Cliente cliente) {
+    /*public ResponseEntity<Cliente> editarCliente(Integer id, Cliente cliente) {
         if(cliente.getId() != null) {
-            return "El id no puede estar en el body";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
             if(clienteRepository.existsById(id)) {
                 cliente.setId(id);
-                clienteRepository.save(cliente);
-                return "modificado";
+                return ResponseEntity.ok(clienteRepository.save(cliente));
             } else {
-                return "El id no existe";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
         }
     }*/
-
 
 }

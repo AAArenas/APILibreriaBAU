@@ -4,6 +4,7 @@ import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ClienteService;
 import com.baufest.Libreria.service.ProductoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,14 +32,14 @@ public class Suscripcion implements IClave {
     @Column(name = "Cantidad_mensual")
     Integer cantidadMensual;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cliente",nullable = false)
     private Cliente cliente;
 
     @Column(name = "anual")
     private boolean anual;
 
-    @Column(name = "direccion_de_entrega")
+    @Column(name="direccionDeEntrega")
     private String direccionDeEntrega;
 
     @Transient
@@ -46,7 +47,6 @@ public class Suscripcion implements IClave {
 
     @Transient
     Integer productoId;
-
 
     public Suscripcion(@JsonProperty("cantidadMensual") Integer cantidadMensual,
                        @JsonProperty("finSuscripcion") LocalDate finSuscripcion,
