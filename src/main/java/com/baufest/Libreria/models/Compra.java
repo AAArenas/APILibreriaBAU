@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ProductoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Compra")
-public class Compra {
+public class Compra implements IClave {
 
     @Id
     @Column(name = "id")
@@ -43,7 +44,9 @@ public class Compra {
     public Compra() {
 
     }
+    public void setId(Integer Id){
 
+    }
     public void setFactura(Factura factura) {
         this.factura = factura;
     }

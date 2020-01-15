@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name="Productos")
-public class Producto {
+public class Producto implements IClave {
 
     @Id
     @Column(name="id")

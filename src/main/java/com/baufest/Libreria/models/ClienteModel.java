@@ -1,12 +1,13 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-public class ClienteModel {
+public class ClienteModel implements IClave {
 
 
     private Integer id;

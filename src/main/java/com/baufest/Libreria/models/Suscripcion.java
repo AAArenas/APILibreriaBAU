@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ClienteService;
 import com.baufest.Libreria.service.ProductoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Suscripcion")
-public class Suscripcion {
+public class Suscripcion implements IClave {
 
     @Id
     @Column(name = "id", nullable = false)

@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name="clientes")
-public class Cliente {
+public class Cliente implements IClave {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

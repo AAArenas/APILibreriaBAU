@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.type.descriptor.sql.NVarcharTypeDescriptor;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name= "descuento")
-public class Descuento implements Serializable {
+public class Descuento implements Serializable, IClave {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

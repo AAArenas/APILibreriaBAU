@@ -1,5 +1,6 @@
 package com.baufest.Libreria.models;
 
+import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ClienteService;
 //import com.baufest.Libreria.service.CuentaCorrienteService;
 import com.baufest.Libreria.service.DescuentoService;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name= "Factura")
-public class Factura {
+public class Factura implements IClave {
 
     //todo: recordar sacar los publics y agregar los getters
 
@@ -134,6 +135,10 @@ public class Factura {
         return descuentos;
     }
 */
+    public void setId(Integer Id) {
+
+    }
+
     public void setCliente(Cliente cliente){
         this.cliente = cliente;
     }

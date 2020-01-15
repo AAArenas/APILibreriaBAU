@@ -24,19 +24,19 @@ public class DescuentoController {
     //List all descuentos
     @GetMapping
     public ResponseEntity<List<Descuento>> getAllSuscripcions(){
-            return descuentoService.obtenerDescuentos();
+            return descuentoService.getAll();
     }
 
     //List one descuento
     @RequestMapping(value = "{descuentoId}", method = RequestMethod.GET)
     public ResponseEntity<Descuento> getDescuento(@PathVariable("descuentoId") Integer descuentoId){
-        return descuentoService.getDescuentoById(descuentoId);
+        return descuentoService.getById(descuentoId);
     }
 
     //Create new Descuento
     @PostMapping
     public ResponseEntity<Descuento> createDescuento(@RequestBody Descuento descuento){
-        return descuentoService.saveOrUpdateDescuento(descuento);
+        return descuentoService.save(descuento);
     }
 
     @DeleteMapping(value = "{descuentoId}")
@@ -46,7 +46,7 @@ public class DescuentoController {
     }
 
     @PutMapping(path = "{Id}")
-    public ResponseEntity<Descuento> updateDescuento(@PathVariable("Id") Integer Id, @RequestBody Descuento descuento){
-        return descuentoService.update(Id, descuento);
+    public ResponseEntity<Descuento> update(@PathVariable("Id") Integer Id, @RequestBody Descuento descuento){
+        return descuentoService.update(descuento, Id);
     }
 }
