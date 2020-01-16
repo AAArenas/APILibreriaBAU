@@ -65,7 +65,7 @@ public class Compra implements IClave {
     }
 
     public void cargarProducto(ProductoService productoService) {
-        producto = productoService.getProducto(productoId).getBody();
+        producto = productoService.getById(productoId).getBody();
     }
 
     public void setProducto(Producto producto){

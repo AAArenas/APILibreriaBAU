@@ -124,12 +124,12 @@ public class Suscripcion implements IClave {
     }
 
     public void cargarCliente(ClienteService clienteService) {
-        this.cliente = clienteService.obtenerClienteId(this.clienteId).get();
+        this.cliente = clienteService.getById(this.clienteId).getBody();
         this.direccionDeEntrega = this.cliente.getDireccion();
     }
 
     public void cargarProducto(ProductoService productoService) {
-        this.producto = productoService.getProducto(this.productoId).getBody();
+        this.producto = productoService.getById(this.productoId).getBody();
     }
 
     public boolean getAnual(){

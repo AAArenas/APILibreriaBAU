@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -28,9 +29,9 @@ class ClienteServiceTest {
 
     @Test
     public void obtenerClientePorIdTest(){
-        Cliente cliente = new Cliente(1,"test","test");
-        when(mockRepository.findById(1)).thenReturn(Optional.of(cliente));
-        Cliente test = clienteService.obtenerClienteId(1).orElse(null);
+        /*ResponseEntity<Cliente> cliente = new ResponseEntity<Cliente>(1,"test","test");
+        when(mockRepository.getById(Cliente.class,1)).thenReturn(cliente);*/
+        Cliente test = clienteService.getById(1).getBody();
         assertEquals("test", test.getName());
         assertEquals("test", test.getDireccion());
         assertEquals(1, test.getId());
@@ -47,8 +48,8 @@ class ClienteServiceTest {
         clientes.add(cliente3);
         clientes.add(cliente4);
 
-        when(mockRepository.findAll()).thenReturn(clientes);
-        List<Cliente> test = clienteService.obtenerClientes();
+        when(mockRepository.getAll(Cliente.class)).thenReturn((ResponseEntity) clientes);
+        List<Cliente> test = clienteService.getAll().getBody();
 
         //Cliente 1
         assertEquals(cliente, test.get(0));
@@ -60,12 +61,12 @@ class ClienteServiceTest {
         assertEquals(cliente4, test.get(3));
     }
     public void crearClienteTest(){
-        Cliente cliente = new Cliente(1,"test","test");
+        /*Cliente cliente = new Cliente(1,"test","test");
 
-        when(mockRepository.save(cliente)).thenReturn(cliente);
+        when(mockRepository.save(cliente)).thenReturn(ResponseEntity.of(cliente));
 
-        Cliente clientereturn = clienteService.crearCliente(cliente);
+        Cliente clientereturn = clienteService.save(cliente).getBody();
 
-        assertEquals(clientereturn,cliente);
+        assertEquals(clientereturn,cliente);*/
     }
 }

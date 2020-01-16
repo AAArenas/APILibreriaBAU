@@ -18,62 +18,47 @@ public class SuscripcionService {
 
     @Autowired
     ClienteService clienteService;
+
     @Autowired
     ProductoService productoService;
-    //@Autowired
-    //JpaRepository<Suscripcion, Integer> repository;
 
     @Autowired
     SuscripcionRepository suscripcionRepository;
 
 
-    public ResponseEntity<List<Suscripcion>> getAllSuscripcions() {
-        List<Suscripcion> suscripciones = suscripcionRepository.findAll();
-        return ResponseEntity.ok(suscripciones);
+    public ResponseEntity<Suscripcion> save(Suscripcion suscripcion){
+        return suscripcionRepository.save(suscripcion);
     }
 
-    public ResponseEntity<Suscripcion> getSuscripcionById(Integer suscripcionId) {
-        Optional<Suscripcion> optionalSuscripcionModel = suscripcionRepository.findById(suscripcionId);
-        if (optionalSuscripcionModel.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(optionalSuscripcionModel.get());
+    public ResponseEntity<Suscripcion> getById(Integer id){
+        return suscripcionRepository.getById(Suscripcion.class,id);
     }
 
-    public ResponseEntity<Suscripcion> save(Suscripcion suscripcion) {
-        suscripcion.cargarCliente(clienteService);
-        suscripcion.cargarProducto(productoService);
-        suscripcion.comenzarSuscripcion();
-        Suscripcion nuevaSuscripcion = suscripcionRepository.save(suscripcion);
-        return ResponseEntity.ok(nuevaSuscripcion);
+    public ResponseEntity<List<Suscripcion>> getAll(){
+
+        return suscripcionRepository.getAll(Suscripcion.class);
     }
 
-    public  ResponseEntity<Integer> delete(Integer suscripcionId) {
-        try {
-            suscripcionRepository.deleteById(suscripcionId);
-            return ResponseEntity.ok(suscripcionId);
-        } catch (EmptyResultDataAccessException exc) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
+    public ResponseEntity<Suscripcion> delete(Integer id){
+        return suscripcionRepository.delete(Suscripcion.class,id);
     }
 
     public ResponseEntity<Suscripcion> update(Integer Id, Suscripcion suscripcion) {
         //if (suscripcion.get) Fixme: validar... que validar?
-        if (suscripcionRepository.existsById(Id)) {
-            Suscripcion suscripcionAux  = this.getSuscripcionById(Id).getBody();
+        if (suscripcionRepository.existById(Suscripcion.class,Id)) {
+            Suscripcion suscripcionAux  = this.getById(Id).getBody();
             suscripcion.setInicioSuscripcion(suscripcionAux.getInicio());
             suscripcion.cargarCliente(clienteService);
             suscripcion.cargarProducto(productoService);
             suscripcion.setId(Id);
-            return ResponseEntity.ok(suscripcionRepository.save(suscripcion));
+            return suscripcionRepository.update(suscripcion,Id);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
     public ResponseEntity<Factura> generarFactura(Integer id) {
-
-        Suscripcion suscripcion = this.getSuscripcionById(id).getBody();
+        Suscripcion suscripcion = (Suscripcion) suscripcionRepository.getById(Suscripcion.class,id).getBody();
         Compra compra = new Compra();
         Factura factura = new Factura();
         List<Compra> compras = new ArrayList<>();
@@ -89,6 +74,6 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(Integer id) {
-       return ResponseEntity.ok(suscripcionRepository.findByClienteId(id).get());
+       return (ResponseEntity<List<Suscripcion>>) suscripcionRepository.findByClienteId(id).get();
     }
 }

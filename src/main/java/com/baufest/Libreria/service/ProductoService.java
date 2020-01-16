@@ -1,6 +1,7 @@
 package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.errors.ValidationException;
+import com.baufest.Libreria.models.Descuento;
 import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.repository.ProductoRepository;
 import org.apache.coyote.Response;
@@ -21,49 +22,24 @@ public class ProductoService {
     private  ProductoRepository productoRepository;
 
 
-   /* public ProductoService(ProductoRepository productoRepository){
-        this.productoRepository= productoRepository;
-    }*/
-
-    public ResponseEntity<List<Producto>> findAll(){
-        List<Producto> productos = productoRepository.findAll();
-        return ResponseEntity.ok(productos);
+    public ResponseEntity<Producto> save(Producto producto){
+        return productoRepository.save(producto);
     }
 
-    public ResponseEntity<Integer> agregarProducto(Producto producto){
-        if (producto.getNombre().isBlank() || producto.getTipo().isBlank()){
-            throw new ValidationException("No podés meter un producto vacio, forro");
-        }
-        return ResponseEntity.ok(productoRepository.save(producto).getId());
+    public ResponseEntity<Producto> getById(Integer id){
+        return productoRepository.getById(Producto.class,id);
     }
 
-    public ResponseEntity<Producto> getProducto(Integer id){
-        Optional<Producto> optionalProducto = productoRepository.findById(id);
-        if(optionalProducto.isPresent()){
-            return ResponseEntity.ok(optionalProducto.get());
-        } else {
-            throw new ValidationException("No hay usuario con este id");
-        }
+    public ResponseEntity<List<Producto>> getAll(){
+
+        return productoRepository.getAll(Producto.class);
     }
 
-    public ResponseEntity<?> deleteProducto(Integer id){
-        try {
-            productoRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException exception) {
-            return new ResponseEntity("No se pudo realizar el delete, gil", HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(id);
+    public ResponseEntity<Producto> delete(Integer id){
+        return productoRepository.delete(Producto.class,id);
     }
 
-    public ResponseEntity<?> editProducto(Integer id, Producto producto){
-        Producto productoViejo = this.getProducto(id).getBody();
-        System.out.println(productoViejo.getNombre());
-        Producto productoNuevo = producto;
-        productoViejo.setNombre(productoNuevo.getNombre());
-        productoViejo.setPrecio(productoNuevo.getPrecio());
-        productoViejo.setTipo(productoNuevo.getTipo());
-        return ResponseEntity.ok(this.agregarProducto(productoViejo));
+    public ResponseEntity<Producto> update(Producto producto,Integer id){
+        return productoRepository.update(producto,id);
     }
-
-
 }

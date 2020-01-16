@@ -1,6 +1,4 @@
 package com.baufest.Libreria.repository;
-
-import com.baufest.Libreria.models.Descuento;
 import com.baufest.Libreria.session.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface RepositoryCustom<S extends IClave > {
 
     /* ================================================================================
@@ -18,6 +18,13 @@ public interface RepositoryCustom<S extends IClave > {
     *   ALL METHODS HERE
     *
     * ================================================================================*/
+    default Boolean existById(Class<S> type, Integer id) {
+        if(this.getById(type,id).getBody() == type) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     default ResponseEntity save(S var1) {
         System.out.println("-----------SAVE---------------");
         Transaction transaction = null;
