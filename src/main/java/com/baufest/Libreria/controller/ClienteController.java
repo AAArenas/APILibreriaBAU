@@ -41,6 +41,12 @@ public class ClienteController {
         return clienteService.obtenerClientes();
     }
 
+    @GetMapping(path="/store")
+    public List<Cliente> getStore(){
+        return clienteService.getAllByStore();
+    }
+
+
     @GetMapping(path="/{id}")
     public Cliente obtenerClienteId(@PathVariable("id") Integer id) {
         return clienteService.obtenerClienteId(id).get();
