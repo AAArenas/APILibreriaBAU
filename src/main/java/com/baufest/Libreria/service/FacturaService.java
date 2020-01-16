@@ -40,11 +40,11 @@ public class FacturaService {
     */
 
     public ResponseEntity<Factura> getFactura(Integer id) {
-        return ResponseEntity.ok(facturaRepository.findById(id).get());
+        return facturaRepository.getById(Factura.class,id);
     }
 
     public ResponseEntity<List<Factura>> getAllFactura() {
-        return ResponseEntity.ok(facturaRepository.findAll());
+        return facturaRepository.getAll(Factura.class);
     }
 
     public ResponseEntity<Factura> updateFactura(Integer id, Factura factura) {
@@ -68,21 +68,17 @@ public class FacturaService {
             compras.get(i).cargarProducto(productoService);
         }
         this.calcularMontoTotal(facturaVirtual);
-        Factura factura = facturaRepository.save(facturaVirtual);
+        Factura factura = (Factura) facturaRepository.save(facturaVirtual).getBody();
         for (int i = 0; i < compras.size(); i++) {
             compras.get(i).cargarProducto(productoService);
             compras.get(i).setFactura(factura);
             compraRepository.save((compras.get(i)));
         }
-
-        return ResponseEntity.ok(
-                facturaRepository.save(factura)
-        );
+        return facturaRepository.save(factura);
     }
 
-    public ResponseEntity<?> deleteFactura(Integer id) {
-        facturaRepository.deleteById(id);
-        return ResponseEntity.ok(1);
+    public ResponseEntity<Factura> deleteFactura(Integer id) {
+        return facturaRepository.delete(Factura.class,id);
     }
 
     public ResponseEntity<Factura> calcularMontoTotal(Factura factura) {
@@ -106,7 +102,7 @@ public class FacturaService {
     public ResponseEntity<Factura> pagarFactura(Integer id) {
         Factura factura = this.getFactura(id).getBody();
         factura.pagar();
-        return (ResponseEntity.ok(facturaRepository.save(factura)));
+        return facturaRepository.save(factura);
     }
 
 

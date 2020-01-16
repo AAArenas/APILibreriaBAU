@@ -26,33 +26,22 @@ public class ProductoService {
     }*/
 
     public ResponseEntity<List<Producto>> findAll(){
-        List<Producto> productos = productoRepository.findAll();
-        return ResponseEntity.ok(productos);
+        return productoRepository.getAll(Producto.class);
     }
 
     public ResponseEntity<Integer> agregarProducto(Producto producto){
         if (producto.getNombre().isBlank() || producto.getTipo().isBlank()){
-            throw new ValidationException("No podés meter un producto vacio, forro");
+            throw new ValidationException("No podés meter un producto vacio");
         }
-        return ResponseEntity.ok(productoRepository.save(producto).getId());
+        return productoRepository.save(producto);
     }
 
     public ResponseEntity<Producto> getProducto(Integer id){
-        Optional<Producto> optionalProducto = productoRepository.findById(id);
-        if(optionalProducto.isPresent()){
-            return ResponseEntity.ok(optionalProducto.get());
-        } else {
-            throw new ValidationException("No hay usuario con este id");
-        }
+        return productoRepository.getById(Producto.class,id);
     }
 
     public ResponseEntity<?> deleteProducto(Integer id){
-        try {
-            productoRepository.deleteById(id);
-        } catch (EmptyResultDataAccessException exception) {
-            return new ResponseEntity("No se pudo realizar el delete, gil", HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(id);
+        return productoRepository.delete(Producto.class,id);
     }
 
     public ResponseEntity<?> editProducto(Integer id, Producto producto){
@@ -64,6 +53,4 @@ public class ProductoService {
         productoViejo.setTipo(productoNuevo.getTipo());
         return ResponseEntity.ok(this.agregarProducto(productoViejo));
     }
-
-
 }
