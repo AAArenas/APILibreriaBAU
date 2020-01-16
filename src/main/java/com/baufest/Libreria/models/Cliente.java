@@ -20,11 +20,11 @@ public class Cliente implements IClave {
     @NotBlank
     private String name;
 
-    @Column(name="direccion")
     @NotBlank
+    @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL)
     private List<Suscripcion> suscripciones;
 
     @OneToMany(mappedBy = "cliente")
