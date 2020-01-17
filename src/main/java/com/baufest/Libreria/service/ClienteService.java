@@ -56,14 +56,10 @@ public class ClienteService {
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(Integer id) {
         return suscripcionService.listarSuscripcionesByClienteId(id);
     }
-<<<<<<< HEAD
 
 
 
     /*public ResponseEntity<Cliente> editarCliente(Integer id, Cliente cliente) {
-=======
-  /*  public String editarCliente(Integer id, Cliente cliente) {
->>>>>>> integrationCrud
         if(cliente.getId() != null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
