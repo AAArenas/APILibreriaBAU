@@ -29,7 +29,6 @@ public class ClienteController {
         return clienteService.crearCliente(cliente);
     }*/
 
-
     @PostMapping
     public ResponseEntity<Cliente> crearCliente(@NonNull @RequestBody ClienteModel clienteModel) {
         Cliente cliente = new Cliente(clienteModel);
