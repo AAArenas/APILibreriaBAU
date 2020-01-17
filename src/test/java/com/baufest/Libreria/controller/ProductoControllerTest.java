@@ -54,7 +54,7 @@ class ProductoControllerTest {
     void listarProductos() {
 
         when(productoRepository.getAll(Producto.class))
-                .thenReturn((ResponseEntity) productos);
+                .thenReturn((ResponseEntity<List<Producto>>) productos);
 
         List<Producto> productosObtenidos = productoController.listarProductos().getBody();
         assertEquals(productosObtenidos,productos);

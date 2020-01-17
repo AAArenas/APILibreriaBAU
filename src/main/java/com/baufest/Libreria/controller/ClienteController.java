@@ -22,42 +22,44 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
+    /*
+    @PostMapping
+    public Cliente crearCliente(@NonNull @RequestBody ClienteModel clienteModel){
+        Cliente cliente = new Cliente(clienteModel);
+        return clienteService.crearCliente(cliente);
+    }*/
+
 
     @PostMapping
     public ResponseEntity<Cliente> crearCliente(@NonNull @RequestBody ClienteModel clienteModel) {
         Cliente cliente = new Cliente(clienteModel);
-        return clienteService.save(cliente);
+        return clienteService.crearCliente(cliente);
     }
 
     @GetMapping
-    public ResponseEntity<List<Cliente>> obtenerClientes(){
-        return clienteService.getAll();
+    public List<Cliente> obtenerClientes(){
+        return clienteService.obtenerClientes();
     }
-
-    @GetMapping(path="/store")
-    public List<Cliente> getStore(){
-        return clienteService.getAllByStore();
-    }
-
 
     @GetMapping(path="/{id}")
-    public ResponseEntity<Cliente> obtenerClienteId(@PathVariable("id") Integer id) {
-        return clienteService.getById(id);
+    public Cliente obtenerClienteId(@PathVariable("id") Integer id) {
+        return clienteService.obtenerClienteId(id).getBody();
     }
 
     @DeleteMapping(path="{id}")
-    public ResponseEntity<Cliente> borrarClienteId(@PathVariable("id") Integer id) {
-        return clienteService.delete(id);
+    public Cliente borrarClienteId(@PathVariable("id") Integer id) {
+        return clienteService.borrarClienteId(id).getBody();
     }
 
     @PutMapping(path="/{id}")
     public ResponseEntity<Cliente> editarcliente(@PathVariable("id") Integer id, @NonNull @RequestBody Cliente cliente) {
-        return clienteService.update(cliente,id);
+        return clienteService.editarCliente(id,cliente);
     }
 
-    /*@GetMapping(path = "/{id}/suscripciones")
+    @GetMapping(path = "/{id}/suscripciones")
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(@PathVariable ("id") Integer id){
         System.out.println("--ok--");
         return clienteService.listarSuscripcionesByClienteId(id);
-    }*/
+    }
+
 }
