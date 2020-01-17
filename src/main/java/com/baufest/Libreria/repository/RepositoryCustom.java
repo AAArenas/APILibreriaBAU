@@ -1,9 +1,13 @@
 package com.baufest.Libreria.repository;
 
-import com.baufest.Libreria.models.Descuento;
 import com.baufest.Libreria.session.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -11,14 +15,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
-public interface RepositoryCustom<S extends IClave > {
+@NoRepositoryBean
+public interface RepositoryCustom<T extends IClave,ID> extends Repository<T, ID>, QueryByExampleExecutor<T>{
 
     /* ================================================================================
     *
     *   ALL METHODS HERE
     *
     * ================================================================================*/
-    default ResponseEntity save(S var1) {
+    default ResponseEntity save(T var1) {
         System.out.println("-----------SAVE---------------");
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
@@ -41,7 +46,7 @@ public interface RepositoryCustom<S extends IClave > {
         }
     }
 
-    default ResponseEntity getById(Class<S> type, Integer id) {
+    default ResponseEntity getById(Class<T> type, Integer id) {
         System.out.println("-----------GET BY ID---------------");
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
@@ -49,7 +54,7 @@ public interface RepositoryCustom<S extends IClave > {
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
-            S var= (S) session.get(type,id);
+            T var= (T) session.get(type,id);
             transaction.commit();
             System.out.println("-----------OK---------------");
             return ResponseEntity.ok(var);
@@ -71,7 +76,7 @@ public interface RepositoryCustom<S extends IClave > {
         return data;
     }
 
-    default ResponseEntity<List<S>> getAll(Class<S> type) {
+    default ResponseEntity<List<T>> getAll(Class<T> type) {
         System.out.println("-----------GET ALL---------------");
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
@@ -79,7 +84,7 @@ public interface RepositoryCustom<S extends IClave > {
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
-            List<S> list= loadAllData(type, session);
+            List<T> list= loadAllData(type, session);
             transaction.commit();
             System.out.println("-----------OK---------------");
             return ResponseEntity.ok(list);
@@ -93,14 +98,14 @@ public interface RepositoryCustom<S extends IClave > {
         }
     }
 
-    default ResponseEntity<S> delete(Class<S> type,Integer id) {
+    default ResponseEntity<T> delete(Class<T> type,Integer id) {
         Transaction transaction = null;
         HibernateUtil hu = new HibernateUtil();
         try (        Session session = hu.getSessionFactory("delete").openSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
-            S var = (S) session.get(type,id);
+            T var = (T) session.get(type,id);
             session.delete(var);
             System.out.println("-----------OK---------------");
             transaction.commit();
@@ -115,7 +120,7 @@ public interface RepositoryCustom<S extends IClave > {
         }
     }
 
-    default ResponseEntity<S> update(S var1,Integer Id) {
+    default ResponseEntity<T> update(T var1,Integer Id) {
         var1.setId(Id);
         System.out.println("-----------SAVE---------------");
         Transaction transaction = null;

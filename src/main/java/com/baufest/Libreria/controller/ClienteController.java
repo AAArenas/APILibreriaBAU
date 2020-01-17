@@ -33,7 +33,7 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<Cliente> crearCliente(@NonNull @RequestBody ClienteModel clienteModel) {
         Cliente cliente = new Cliente(clienteModel);
-        return clienteService.crearOActualizarCliente(cliente);
+        return clienteService.crearCliente(cliente);
     }
 
     @GetMapping
@@ -43,12 +43,12 @@ public class ClienteController {
 
     @GetMapping(path="/{id}")
     public Cliente obtenerClienteId(@PathVariable("id") Integer id) {
-        return clienteService.obtenerClienteId(id).get();
+        return clienteService.obtenerClienteId(id).getBody();
     }
 
     @DeleteMapping(path="{id}")
-    public int borrarClienteId(@PathVariable("id") Integer id) {
-        return clienteService.borrarClienteId(id);
+    public Cliente borrarClienteId(@PathVariable("id") Integer id) {
+        return clienteService.borrarClienteId(id).getBody();
     }
 
     @PutMapping(path="/{id}")

@@ -6,6 +6,7 @@ import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.ClienteRepository;
 import com.baufest.Libreria.repository.SuscripcionRepository;
 import com.baufest.Libreria.session.HibernateUtil;
+import org.apache.coyote.Response;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,100 +30,27 @@ public class ClienteService {
     @Autowired
     SuscripcionRepository suscripcionRepository;
 
-    public ResponseEntity<Cliente> crearOActualizarCliente(Cliente cliente){
 
-        Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try ( Session session = hu.getSessionFactory("insert").openSession()){
-
-            // start a transaction
-            transaction = session.beginTransaction();
-
-            // save the descuento object
-            session.saveOrUpdate(cliente);
-
-            //commit transaction
-            transaction.commit();
-            return ResponseEntity.ok(cliente);
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (transaction != null){
-                transaction.rollback();
-            }
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
-        } /*finally {
-            session.close();
-        }*/
-    }
-
-
-    public Cliente crearCliente(Cliente cliente){
+    public ResponseEntity crearCliente(Cliente cliente){
         return clienteRepository.save(cliente);
     }
 
     public List<Cliente> obtenerClientes() {
-        return clienteRepository.findAll();
+        return clienteRepository.getAll(Cliente.class).getBody();
     }
 
-    public Optional<Cliente> obtenerClienteId(Integer id) {
-        return clienteRepository.findById(id);
+    public ResponseEntity<Cliente> obtenerClienteId(Integer id) {
+        return clienteRepository.getById(Cliente.class,id);
     }
 
-    public int borrarClienteId(Integer id)
+    public ResponseEntity<Cliente> borrarClienteId(Integer id)
     {
-        Optional<Cliente> cliente=obtenerClienteId(id);
-        if(cliente.isEmpty()) {
-            return 0;
-        } else {
-            clienteRepository.delete(cliente.get());
-            return 1;
-        }
+        ResponseEntity<Cliente> cliente=obtenerClienteId(id);
+        return clienteRepository.delete(Cliente.class,id);
     }
 
     public ResponseEntity<Cliente> editarCliente(Integer id, Cliente cliente) {
-
-        if(clienteRepository.existsById(id)) {
-            Transaction transaction = null;
-            HibernateUtil hu = new HibernateUtil();
-            Session session = hu.getSessionFactory("insert").openSession();
-            try {
-                System.out.println("session " + session);
-
-                // start a transaction
-                transaction = session.beginTransaction();
-                //System.out.println("transaction " + transaction);
-
-                // save the descuento object
-                cliente.setId(id);
-                session.saveOrUpdate(cliente);
-                System.out.println("-----------OK---------------");
-
-                if ( cliente.getDireccion() != this.obtenerClienteId(id).get().getDireccion()){
-                    List<Suscripcion> suscripciones = suscripcionRepository.findByClienteId(id).get();
-                    int cantSuscripciones = suscripciones.size();
-                    for ( int i = 0; i < cantSuscripciones; i++) {
-                        suscripciones.get(i).setDireccionDeEntrega(cliente.getDireccion());
-                        session.saveOrUpdate(suscripciones.get(i));
-                    }
-                }
-
-                //commit transaction
-                transaction.commit();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (transaction != null){
-                    transaction.rollback();
-                }
-                e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
-
-            } finally {
-                session.close();
-            }
-        }
-        return ResponseEntity.ok(cliente);
+        return clienteRepository.update(cliente,id);
     }
 
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(Integer id) {
