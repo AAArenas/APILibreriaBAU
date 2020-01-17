@@ -44,7 +44,7 @@ public class ProductoService {
         return productoRepository.delete(Producto.class,id);
     }
 
-    public ResponseEntity<?> editProducto(Integer id, Producto producto){
+    public ResponseEntity<?> editProducto(Producto producto, Integer id ){
         Producto productoViejo = this.getProducto(id).getBody();
         System.out.println(productoViejo.getNombre());
         Producto productoNuevo = producto;

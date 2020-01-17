@@ -29,13 +29,13 @@ public class ProductoController {
 
     @GetMapping
     public ResponseEntity<List<Producto>> listarProductos(){
-        return productoService.getAll();
+        return productoService.findAll();
     }
 
     @PostMapping
     public ResponseEntity<?> agregarProducto(@RequestBody Producto producto){
         try {
-            return productoService.save(producto);
+            return productoService.agregarProducto(producto);
         } catch(ValidationException exception){
             return ResponseEntity.badRequest().body(exception.getMsg());
         }
@@ -45,7 +45,7 @@ public class ProductoController {
     @ResponseBody
     public ResponseEntity<?> getProducto(@PathVariable("id") Integer id){
         try {
-            return productoService.getById(id);
+            return productoService.getProducto(id);
         } catch(ValidationException exception){
             return ResponseEntity.badRequest().body(exception.getMsg());
         }
@@ -53,7 +53,7 @@ public class ProductoController {
 
     @DeleteMapping(value ="{id}")
     public ResponseEntity<?> deleteProducto(@PathVariable("id") Integer id){
-        return productoService.delete(id);
+        return productoService.deleteProducto(id);
     }
 
     @RequestMapping(value = "/tipos", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class ProductoController {
     @PutMapping(path="{id}")
     public ResponseEntity<?> editProducto(@PathVariable("id") Integer id, @RequestBody Producto producto){
         try {
-            return productoService.update(producto, id);
+            return productoService.editProducto(producto, id);
         } catch(ValidationException exception){
             return ResponseEntity.badRequest().body(exception.getMsg());
         }
