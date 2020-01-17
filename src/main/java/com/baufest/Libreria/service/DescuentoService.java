@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DescuentoService implements DescuentoRepository {
+public class DescuentoService {
 
     @Autowired
     DescuentoRepository descuentoRepository;
@@ -25,7 +25,6 @@ public class DescuentoService implements DescuentoRepository {
     }
 
     public ResponseEntity<List<Descuento>> getAll(){
-
         return descuentoRepository.getAll(Descuento.class);
     }
 

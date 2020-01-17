@@ -1,7 +1,8 @@
 package com.baufest.Libreria.repository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ClienteRepository<S extends IClave > extends RepositoryCustom {
+import com.baufest.Libreria.models.Cliente;
+
+public interface ClienteRepository extends RepositoryCustom<Cliente,Integer> {
 
 }
+

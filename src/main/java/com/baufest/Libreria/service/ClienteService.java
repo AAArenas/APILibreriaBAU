@@ -1,76 +1,75 @@
 package com.baufest.Libreria.service;
+
 import com.baufest.Libreria.models.Cliente;
+import com.baufest.Libreria.models.Descuento;
+import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.ClienteRepository;
-<<<<<<< HEAD
-import com.baufest.Libreria.repository.DescuentoRepository;
 import com.baufest.Libreria.repository.SuscripcionRepository;
+import com.baufest.Libreria.session.HibernateUtil;
+import org.apache.coyote.Response;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-=======
-import com.baufest.Libreria.session.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
->>>>>>> 116fa75170b67f856f155995fe9ceb063be07958
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
+
     @Autowired
     ClienteRepository clienteRepository;
 
-<<<<<<< HEAD
-    public ResponseEntity<Cliente> save(Cliente cliente){
-=======
+    @Autowired
+    SuscripcionService suscripcionService;
 
-    public List<Cliente> getAllByStore(){
-        HibernateUtil hu = new HibernateUtil();
-        SessionFactory sf = hu.getSessionFactory("select");
-        Session session = sf.openSession();
-        Query query = session.createSQLQuery("CALL kiosko.getAllClientes()").addEntity(Cliente.class);
-        return query.list();
-    }
+    @Autowired
+    SuscripcionRepository suscripcionRepository;
 
-    public Cliente crearCliente(Cliente cliente){
->>>>>>> 116fa75170b67f856f155995fe9ceb063be07958
+
+    public ResponseEntity crearCliente(Cliente cliente){
         return clienteRepository.save(cliente);
     }
 
-    public ResponseEntity<Cliente> getById(Integer id){
+    public List<Cliente> obtenerClientes() {
+        return clienteRepository.getAll(Cliente.class).getBody();
+    }
+
+    public ResponseEntity<Cliente> obtenerClienteId(Integer id) {
         return clienteRepository.getById(Cliente.class,id);
     }
 
-    public ResponseEntity<List<Cliente>> getAll(){
-
-        return clienteRepository.getAll(Cliente.class);
-    }
-
-<<<<<<< HEAD
-    public ResponseEntity<Cliente> delete(Integer id){
+    public ResponseEntity<Cliente> borrarClienteId(Integer id)
+    {
+        ResponseEntity<Cliente> cliente=obtenerClienteId(id);
         return clienteRepository.delete(Cliente.class,id);
     }
 
-    public ResponseEntity<Cliente> update(Cliente cliente,Integer id){
+    public ResponseEntity<Cliente> editarCliente(Integer id, Cliente cliente) {
         return clienteRepository.update(cliente,id);
-=======
-    public String editarCliente(Integer id, Cliente cliente) {
+    }
+
+    public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(Integer id) {
+        return suscripcionService.listarSuscripcionesByClienteId(id);
+    }
+
+
+
+    /*public ResponseEntity<Cliente> editarCliente(Integer id, Cliente cliente) {
         if(cliente.getId() != null) {
-            return "El id no puede estar en el body";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
             if(clienteRepository.existsById(id)) {
                 cliente.setId(id);
-                clienteRepository.save(cliente);
-                return "modificado";
+                return ResponseEntity.ok(clienteRepository.save(cliente));
             } else {
-                return "El id no existe";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
         }
->>>>>>> 116fa75170b67f856f155995fe9ceb063be07958
-    }
+    }*/
+
 }

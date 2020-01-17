@@ -102,7 +102,7 @@ public class Factura implements IClave {
 //    }
 
     public void cargarCliente(ClienteService clienteService) {
-        this.cliente = clienteService.getById(this.clienteId).getBody();
+        this.cliente = clienteService.obtenerClienteId(this.clienteId).getBody();
     }
 
     public void cargarDescuentos(DescuentoService descuentoService){
