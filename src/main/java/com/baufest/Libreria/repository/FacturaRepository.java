@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FacturaRepository extends RepositoryCustom<Factura,Integer> {
+public class FacturaRepository extends CustomRepositoryImpl<Factura,Integer> {
 
 }

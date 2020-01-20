@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface ProductoRepository extends RepositoryCustom<Producto,Integer> {
+public class ProductoRepository extends CustomRepositoryImpl<Producto,Integer> {
 
 
 }

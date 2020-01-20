@@ -1,6 +1,8 @@
 package com.baufest.Libreria.repository;
 
 import com.baufest.Libreria.models.Descuento;
+import org.springframework.stereotype.Repository;
 
-public interface DescuentoRepository extends RepositoryCustom<Descuento,Integer> {
+@Repository
+public class DescuentoRepository extends CustomRepositoryImpl<Descuento,Integer> {
 }
