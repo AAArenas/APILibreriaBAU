@@ -7,15 +7,18 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class LibreriaApplication {
 
 
-	private SessionFactory sessionFactory;
-
 	public static void main(String[] args) {
 		SpringApplication.run(LibreriaApplication.class, args);
+
+
 	}
 
 }

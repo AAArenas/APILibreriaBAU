@@ -65,6 +65,6 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<List<Suscripcion>> listarSuscripcionesByClienteId(Integer id) {
-       return ResponseEntity.ok(suscripcionRepository.findByClienteId(id).get());
+       return suscripcionRepository.findByClienteId(id);
     }
 }

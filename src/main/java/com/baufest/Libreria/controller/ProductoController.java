@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Array;
 import java.net.http.HttpHeaders;
 import java.net.http.HttpResponse;
@@ -27,9 +28,19 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    HttpServletRequest request;
+
+    private String method() {
+        return request.getHeader("headerName");
+    }
+
     @GetMapping
     public ResponseEntity<List<Producto>> listarProductos(){
+        String metodo = this.method();
+        System.out.println(metodo);
         return productoService.findAll();
+
     }
 
     @PostMapping
