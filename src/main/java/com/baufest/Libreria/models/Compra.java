@@ -51,7 +51,6 @@ public class Compra implements IClave {
         this.factura = factura;
     }
 
-
     public Producto getProducto() {
         return producto;
     }
