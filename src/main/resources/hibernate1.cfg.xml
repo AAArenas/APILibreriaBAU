@@ -13,7 +13,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kiosko</property>
         <property name="hibernate.connection.username">seleccionar</property>
         <property name="hibernate.connection.password">1234</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
 
         <!-- <property name="hbm2ddl.auto">none</property>-->
 
