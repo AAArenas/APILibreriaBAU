@@ -16,7 +16,8 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
     SessionFactoryHandler sessionFactoryHandler;
 
     @Override
-    public boolean preHandle( HttpServletRequest request,
+    public boolean preHandle(
+            HttpServletRequest request,
             HttpServletResponse response,
             Object handler) throws Exception {
 

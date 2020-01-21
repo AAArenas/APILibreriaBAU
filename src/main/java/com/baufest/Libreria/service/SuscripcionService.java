@@ -36,6 +36,8 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<Suscripcion> save(Suscripcion suscripcion) {
+       suscripcion.cargarCliente(clienteService);
+       suscripcion.cargarProducto(productoService);
         return suscripcionRepository.save(suscripcion);
     }
 
