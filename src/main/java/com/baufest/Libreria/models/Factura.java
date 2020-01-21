@@ -58,7 +58,7 @@ public class Factura implements IClave {
     }
 
     public Factura(@JsonProperty("compras") List<Compra> compras, @JsonProperty("descuentosId") List<Integer> descuentosId, @JsonProperty("clienteId") Integer clienteId, @JsonProperty("pagado") boolean pagado) {
-       // this.descuentosId = descuentosId;
+        this.descuentosId = descuentosId;
         this.fecha = LocalDate.now();
         this.compras = compras;
         this.clienteId = clienteId;
