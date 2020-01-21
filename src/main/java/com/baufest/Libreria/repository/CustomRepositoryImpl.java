@@ -3,9 +3,12 @@ package com.baufest.Libreria.repository;
 import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.session.HibernateUtil;
+import com.baufest.Libreria.session.SessionFactoryHandler;
+import com.baufest.Libreria.session.SessionHandler;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +21,14 @@ import java.util.List;
 
 public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCustom<T ,Integer> {
 
+    @Autowired
+    SessionHandler sessionHandler;
+
     @Override
     public ResponseEntity save(IClave var1) {
         System.out.println("-----------SAVE---------------");
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (        Session session = hu.getSessionFactory("insert").openSession()){
+        try (        Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -46,8 +51,7 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
     public ResponseEntity getById(Class type, Integer id) {
         System.out.println("-----------GET BY ID---------------");
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (Session session = hu.getSessionFactory("select").openSession()){
+        try (Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -78,8 +82,7 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
     public ResponseEntity<List<T>> getAll(Class type) {
         System.out.println("-----------GET ALL---------------");
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (Session session = hu.getSessionFactory("select").openSession()){
+        try (Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -100,8 +103,7 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
     public ResponseEntity<List<Suscripcion>> findByClienteId(@Param("clienteId") Integer clienteId) {
         System.out.println("-----------GET ALL---------------");
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (Session session = hu.getSessionFactory("select").openSession()){
+        try (Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -122,8 +124,7 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
     @Override
     public ResponseEntity delete(Class type, Integer id) {
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (        Session session = hu.getSessionFactory("delete").openSession()){
+        try (        Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();
@@ -149,8 +150,7 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
         var1.setId(Id);
         System.out.println("-----------SAVE---------------");
         Transaction transaction = null;
-        HibernateUtil hu = new HibernateUtil();
-        try (        Session session = hu.getSessionFactory("insert").openSession()){
+        try (        Session session = sessionHandler.getSession()){
             System.out.println("session " + session);
 
             transaction = session.beginTransaction();

@@ -16,7 +16,7 @@ public class SessionFactoryConfiguration {
 
     @Bean
     SessionFactory sessionFactoryLecutura(){
-        SessionFactory sessionFactory = hibernateUtil.getSessionFactory("select");
+        SessionFactory sessionFactory = hibernateUtil.getSessionFactory("insert");
         return sessionFactory;
     }
 
