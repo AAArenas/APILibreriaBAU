@@ -5,6 +5,8 @@ import com.baufest.Libreria.service.ClienteService;
 //import com.baufest.Libreria.service.CuentaCorrienteService;
 import com.baufest.Libreria.service.DescuentoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,6 +28,7 @@ public class Factura implements IClave {
     private LocalDate fecha;
 
     @OneToMany(mappedBy = "factura",  fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Compra> compras = new ArrayList<Compra>();
 
 //    @ManyToOne

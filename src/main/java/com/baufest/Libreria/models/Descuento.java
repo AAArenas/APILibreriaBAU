@@ -20,8 +20,8 @@ public class Descuento implements Serializable, IClave {
     @Column(name = "id")
     public Integer id;
 
-   // @ManyToMany(mappedBy = "descuentos")
-   // private List<Factura> facturas = new ArrayList<>();
+    @ManyToMany(mappedBy = "descuentos")
+    private List<Factura> facturas = new ArrayList<>();
 
     @NotBlank
     @Column(name = "descripcion")
