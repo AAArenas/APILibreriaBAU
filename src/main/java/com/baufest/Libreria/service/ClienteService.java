@@ -1,22 +1,15 @@
 package com.baufest.Libreria.service;
 
 import com.baufest.Libreria.models.Cliente;
-import com.baufest.Libreria.models.Descuento;
 import com.baufest.Libreria.models.Suscripcion;
 import com.baufest.Libreria.repository.ClienteRepository;
 import com.baufest.Libreria.repository.SuscripcionRepository;
-import com.baufest.Libreria.session.HibernateUtil;
-import org.apache.coyote.Response;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClienteService {

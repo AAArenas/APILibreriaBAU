@@ -18,8 +18,8 @@ public class SessionFactoryHandler {
     @PostConstruct
     public void BuildSessionFactorys(){
         HibernateUtil hibernateUtil = new HibernateUtil();
-        sfLectura =  hibernateUtil.getSessionFactory("select");
-        sfEscritura = hibernateUtil.getSessionFactory("insert");
+        sfLectura =  hibernateUtil.getSessionFactory("insert");
+        sfEscritura = hibernateUtil.getSessionFactory("select");
     }
 
     public void setSessionToLectura(){
