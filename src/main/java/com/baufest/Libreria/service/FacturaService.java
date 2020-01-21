@@ -70,11 +70,11 @@ public class FacturaService {
         this.calcularMontoTotal(facturaVirtual);
         Factura factura = (Factura) facturaRepository.save(facturaVirtual).getBody();
         for (int i = 0; i < compras.size(); i++) {
-            compras.get(i).cargarProducto(productoService);
+            //compras.get(i).cargarProducto(productoService);
             compras.get(i).setFactura(factura);
             compraRepository.save((compras.get(i)));
         }
-        return facturaRepository.save(factura);
+        return facturaRepository.update(factura,factura.getId());
     }
 
     public ResponseEntity<Factura> deleteFactura(Integer id) {
@@ -102,7 +102,7 @@ public class FacturaService {
     public ResponseEntity<Factura> pagarFactura(Integer id) {
         Factura factura = this.getFactura(id).getBody();
         factura.pagar();
-        return facturaRepository.save(factura);
+        return facturaRepository.update(factura,id);
     }
 
 
