@@ -25,7 +25,7 @@ public class Factura implements IClave {
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "factura")
+    @OneToMany(mappedBy = "factura",  fetch = FetchType.EAGER)
     private List<Compra> compras = new ArrayList<Compra>();
 
 //    @ManyToOne
@@ -38,13 +38,13 @@ public class Factura implements IClave {
     @ManyToOne
     @JoinColumn(name = "cliente")
     private Cliente cliente;
-/*
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "factura_descuento",
             joinColumns = {@JoinColumn(referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
     private List<Descuento> descuentos = new ArrayList<>();
-*/
+
     @Transient
     Integer clienteId;
 
@@ -106,10 +106,10 @@ public class Factura implements IClave {
     }
 
     public void cargarDescuentos(DescuentoService descuentoService){
-     /*   Integer cantDescuentos = this.descuentosId.size();
+        Integer cantDescuentos = this.descuentosId.size();
         for (int i = 0 ; i<cantDescuentos; i++){
-            this.descuentos.add(descuentoService.getDescuentoById(descuentosId.get(i)).getBody());
-        }*/
+            this.descuentos.add(descuentoService.getById(descuentosId.get(i)).getBody());
+        }
     }
 
     public Integer getId() {
@@ -117,10 +117,10 @@ public class Factura implements IClave {
     }
 
     public void aplicarDescuentos() {
-      /*  int cantDescuentos = descuentos.size();
+        int cantDescuentos = descuentos.size();
         for (int i = 0 ; i < cantDescuentos; i++){
             montoTotal = descuentos.get(i).aplicarDescuento(montoTotal);
-        }*/
+        }
     }
 
     public void pagar(){
@@ -130,11 +130,11 @@ public class Factura implements IClave {
     public boolean getPagado(){
         return pagado;
     }
-/*
+
     public List<Descuento> getDescuentos(){
         return descuentos;
     }
-*/
+
     public void setId(Integer Id) {
 
     }
@@ -150,9 +150,9 @@ public class Factura implements IClave {
     public Cliente getCliente(){
         return this.cliente;
     }
-/*
+
     public void setDescuentos(List<Descuento> descuentos) {
         this.descuentos = descuentos;
     }
-    */
+
 }
