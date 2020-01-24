@@ -2,7 +2,6 @@ package com.baufest.Libreria.models;
 
 import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ClienteService;
-//import com.baufest.Libreria.service.CuentaCorrienteService;
 import com.baufest.Libreria.service.DescuentoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
@@ -30,10 +29,6 @@ public class Factura implements IClave {
     @OneToMany(mappedBy = "factura",  fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Compra> compras = new ArrayList<Compra>();
-
-//    @ManyToOne
-//    @JoinColumn(name = "cuentaCorriente")
-//    private CuentaCorriente cuentaCorriente;
 
     @Column(name = "montoTotal", nullable = false)
     private Double montoTotal;
@@ -76,13 +71,6 @@ public class Factura implements IClave {
         this.montoTotal = montoTotal;
     }
 
-//    public CuentaCorriente getCuentaCorriente() {
-//        return cuentaCorriente;
-//    }
-
-//    public void setCuentaCorriente(CuentaCorriente cuentaCorriente) {
-//        this.cuentaCorriente = cuentaCorriente;
-//    }
 
     public LocalDate getFecha() {
         return fecha;
@@ -99,10 +87,6 @@ public class Factura implements IClave {
     public void setCompras(List<Compra> compras) {
         this.compras = compras;
     }
-
-//    public void cargarCuentaCorriente(CuentaCorrienteService cuentaCorrienteService) {
-//        this.cuentaCorriente = cuentaCorrienteService.getCuentaCorrienteByClienteId(this.clienteId).get();
-//    }
 
     public void cargarCliente(ClienteService clienteService) {
         this.cliente = clienteService.obtenerClienteId(this.clienteId).getBody();

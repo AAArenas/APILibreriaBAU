@@ -6,7 +6,6 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Component;
 
 import java.util.Hashtable;
@@ -22,7 +21,6 @@ public class HibernateUtil {
                 configs = new Hashtable<String, String>();
         configs.put("select", "hibernate1.cfg.xml");
         configs.put("insert", "hibernate2.cfg.xml");
-        configs.put("delete", "hibernate3.cfg.xml");
 
         System.out.println("Hash code: " + option + " Hash: " + configs.get(option));
 

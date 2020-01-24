@@ -5,18 +5,10 @@ import com.baufest.Libreria.models.Producto;
 import com.baufest.Libreria.models.TipoProducto;
 import com.baufest.Libreria.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.ServerRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.net.http.HttpHeaders;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

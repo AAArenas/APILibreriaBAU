@@ -19,8 +19,6 @@ public class Compra implements IClave {
     @JoinColumn(name="factura")
     Factura factura;
 
-    //Integer id_renglon
-
     @Column(name = "cantidad")
     private Integer cantidad;
 

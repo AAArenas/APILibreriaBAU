@@ -4,7 +4,6 @@ import com.baufest.Libreria.repository.IClave;
 import com.baufest.Libreria.service.ClienteService;
 import com.baufest.Libreria.service.ProductoService;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -104,16 +103,6 @@ public class Suscripcion implements IClave {
     public Integer getCantidadMensual() {
         return cantidadMensual;
     }
-
-/*
-    public Integer getClienteId() {
-        return this.clienteId;
-    }
-
-    public Integer getProductoId() {
-        return this.productoId;
-    }
-*/
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;

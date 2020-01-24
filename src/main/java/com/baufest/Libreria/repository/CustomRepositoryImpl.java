@@ -1,19 +1,13 @@
 package com.baufest.Libreria.repository;
 
-import com.baufest.Libreria.models.Cliente;
 import com.baufest.Libreria.models.Suscripcion;
-import com.baufest.Libreria.session.HibernateUtil;
-import com.baufest.Libreria.session.SessionFactoryHandler;
 import com.baufest.Libreria.session.SessionHandler;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;

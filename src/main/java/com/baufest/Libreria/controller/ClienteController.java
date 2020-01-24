@@ -22,13 +22,6 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    /*
-    @PostMapping
-    public Cliente crearCliente(@NonNull @RequestBody ClienteModel clienteModel){
-        Cliente cliente = new Cliente(clienteModel);
-        return clienteService.crearCliente(cliente);
-    }*/
-
     @PostMapping
     public ResponseEntity<Cliente> crearCliente(@NonNull @RequestBody ClienteModel clienteModel) {
         Cliente cliente = new Cliente(clienteModel);

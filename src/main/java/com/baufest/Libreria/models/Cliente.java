@@ -24,14 +24,13 @@ public class Cliente implements IClave {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "cliente")//, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente")
     private List<Suscripcion> suscripciones;
 
     @OneToMany(mappedBy = "cliente")
     private List<Factura> facturas;
 
-//    @OneToOne(mappedBy = "cliente")
-//    CuentaCorriente cuentaCorriente;
+
 
     @Autowired
     public Cliente(Integer id, String direccion, String nombre) {
