@@ -1,20 +1,28 @@
 # API de la app LibreriaBau. 
 
 ### Tecnologías a utilizar
+
+#### Back
 - Java 13.0.1
 - MySQL 5.7.27.0
 - SPRING BOOT 2.2.2
 - Maven 3.6.3
-- Hibernate 5.4.10 /JPA
-- Angular
+- Hibernate 5.4.9
 
+#### Front
+ - HTML5
+ - JSON
+ - Css3
+ - React 16.12
+ - React-Boostrap 1.0.0-beta.16
+ - Axios 0.19.0
+ - Bootstrap 4.4
+ 
 ### Capas
 
-#### FRONT 
+#### FRONT
 - COMPONENTE
-- ABSTRACCION(MODEL)
 - SERVICE
-
 
 #### BACK
 - CONTROLLER
@@ -24,7 +32,8 @@
 
 #### ----TOOLS-----
 - GIT
-- INTELLIJ / VISUAL STUDIO CODE
+- INTELLIJ
+- VISUAL STUDIO CODE
 - DBeaver (O herramienta de base de datos a preferencia)
 
 #### ----TEST-----
@@ -46,5 +55,3 @@ mvn test
 - Gabriel Rodriguez - garodriguez@baufest.com
 - Martin Olsson - molsson@baufest.com
 - Camilo Lestani - clestani@baufest.com
-- Francisco Giordano - fgiordano@baufest.com
-- Sebastian Szatko - szatko@baufest.com
