@@ -1,6 +1,5 @@
 package com.baufest.Libreria.session;
 
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -26,17 +25,15 @@ public class HibernateUtil {
 
         if (sessionFactory == null) {
             try {
+
                 //create registry
                 registry = new StandardServiceRegistryBuilder().configure(configs.get(option)).build();
-                System.out.println("registry: " + registry);
+
                 // Create MetadataSources
                 MetadataSources sources = new MetadataSources(registry);
 
                 // Create Metadata
                 Metadata metadata = sources.getMetadataBuilder().build();
-
-                System.out.println("sources: " + sources);
-                System.out.println("metaBuilder: " + sources.getMetadataBuilder());
 
                 // Create SessionFactory
                 sessionFactory = metadata.getSessionFactoryBuilder().build();
