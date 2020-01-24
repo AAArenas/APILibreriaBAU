@@ -1,7 +1,10 @@
 package com.baufest.Libreria.repository;
 
 import com.baufest.Libreria.models.Cliente;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+@Repository
+public class ClienteRepository extends CustomRepositoryImpl<Cliente,Integer> {
+
 }
+

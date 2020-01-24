@@ -1,4 +1,4 @@
-package com.baufest.Libreria.service.descuento;
+/*package com.baufest.Libreria.service;
 
 
 import org.junit.jupiter.api.Assertions;
@@ -14,3 +14,4 @@ public class DescuentoAnualTest {
         Assertions.assertTrue(80.00==resultadoFinal,"Fallo el metodo al aplicar descuento anual");
     }
 }
+*/
