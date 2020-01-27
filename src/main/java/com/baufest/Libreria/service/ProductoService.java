@@ -51,6 +51,6 @@ public class ProductoService {
         productoViejo.setNombre(productoNuevo.getNombre());
         productoViejo.setPrecio(productoNuevo.getPrecio());
         productoViejo.setTipo(productoNuevo.getTipo());
-        return ResponseEntity.ok(this.agregarProducto(productoViejo));
+        return ResponseEntity.ok(this.productoRepository.update(productoViejo, productoViejo.getId()));
     }
 }
