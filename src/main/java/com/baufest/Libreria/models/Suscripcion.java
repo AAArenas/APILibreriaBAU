@@ -125,6 +125,10 @@ public class Suscripcion implements IClave {
         return anual;
     }
 
+    public void setAnual(boolean bool) {
+        this.anual = bool;
+    }
+
     public String getDireccionDeEntrega() {
         return direccionDeEntrega;
     }
