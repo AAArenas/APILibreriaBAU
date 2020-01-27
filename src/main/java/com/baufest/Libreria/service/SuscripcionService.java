@@ -47,7 +47,11 @@ public class SuscripcionService {
     }
 
     public ResponseEntity<Suscripcion> update(Integer Id, Suscripcion suscripcion) {
-        return suscripcionRepository.update(suscripcion,Id);
+        Suscripcion sus = this.getSuscripcionById(Id).getBody();
+        sus.setFinSuscripcion(suscripcion.getFin());
+        sus.setCantidadMensual(suscripcion.getCantidadMensual());
+        sus.setAnual(suscripcion.getAnual());
+        return suscripcionRepository.update(sus,Id);
     }
 
     public ResponseEntity<Factura> generarFactura(Integer id) {
