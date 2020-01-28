@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 
-public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCustom<T ,Integer> {
+public abstract class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCustom<T ,Integer> {
 
     @Autowired
     SessionHandler sessionHandler;

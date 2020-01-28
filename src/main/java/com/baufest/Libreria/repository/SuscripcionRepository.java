@@ -9,4 +9,3 @@ import org.springframework.stereotype.Repository;
 public class SuscripcionRepository extends CustomRepositoryImpl<Suscripcion,Integer> {
 
 }
-
