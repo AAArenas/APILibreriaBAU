@@ -39,8 +39,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -71,8 +69,6 @@
 			<version>5.4.9.Final</version>
 		</dependency>
 
-
-
 	</dependencies>
 
 	<build>
@@ -83,6 +79,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

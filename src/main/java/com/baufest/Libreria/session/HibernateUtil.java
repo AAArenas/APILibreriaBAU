@@ -21,8 +21,6 @@ public class HibernateUtil {
         configs.put("select", "hibernate1.cfg.xml");
         configs.put("insert", "hibernate2.cfg.xml");
 
-        System.out.println("Hash code: " + option + " Hash: " + configs.get(option));
-
         if (sessionFactory == null) {
             try {
 

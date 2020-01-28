@@ -19,15 +19,15 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
             HttpServletResponse response,
             Object handler) throws Exception {
 
-        System.out.println("La request es un : " +  request.getMethod() + "!-!-!-!-!-!-!-!-!-!-!");
+        System.out.println("----------  La request es un : " +  request.getMethod() + "  --------------");
 
         if(request.getMethod().equals("GET")){
-            System.out.println("se usa la session de lectura");
+            System.out.println("-----------  se usa la session de lectura  -------------");
             sessionFactoryHandler.setSessionToLectura();
         }
         else
         {
-            System.out.println("se usa la session de escritura");
+            System.out.println("--------------  se usa la session de escritura  -------------- ");
             sessionFactoryHandler.setSessionToEscritura();
         }
 

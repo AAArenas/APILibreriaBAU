@@ -30,7 +30,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             session.save(var1);
             transaction.commit();
-            System.out.println("-----------OK---------------");
             return ResponseEntity.ok(var1);
 
         } catch (Exception e) {
@@ -56,7 +55,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             T var= (T) session.get(type,id);
             transaction.commit();
-            System.out.println("-----------OK---------------");
             return ResponseEntity.ok(var);
 
         } catch (Exception e) {
@@ -93,7 +91,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             List<T> list= loadAllData(type, session);
             transaction.commit();
-            System.out.println("-----------OK---------------");
             return ResponseEntity.ok(list);
 
         } catch (Exception e) {
@@ -118,7 +115,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             List<Suscripcion> suscripciones = session.createQuery("select s from Suscripcion s where s.cliente.id = :clienteId").list();
             transaction.commit();
-            System.out.println("-----------OK---------------");
             return ResponseEntity.ok(suscripciones);
 
         } catch (Exception e) {
@@ -144,7 +140,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             T var = (T) session.get(type,id);
             session.delete(var);
-            System.out.println("-----------OK---------------");
             transaction.commit();
             return ResponseEntity.ok(var);
 
@@ -172,7 +167,6 @@ public class CustomRepositoryImpl<T extends IClave,ID> implements RepositoryCust
             transaction = session.beginTransaction();
             session.update(var1);
             transaction.commit();
-            System.out.println("-----------OK---------------");
             return ResponseEntity.ok(var1);
 
         } catch (Exception e) {
