@@ -47,4 +47,3 @@ mvn test
 - Martin Olsson - molsson@baufest.com
 - Camilo Lestani - clestani@baufest.com
 - Francisco Giordano - fgiordano@baufest.com
-- Sebastian Szatko - szatko@baufest.com
