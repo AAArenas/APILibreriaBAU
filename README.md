@@ -1,5 +1,8 @@
 # API de la app LibreriaBau. 
 
+### Descripcion
+   POC realizada para ver el manejo e integracion de distintas tecnologias, adoptando una arquitectura en capas en una API REST
+
 ### Tecnologías a utilizar
 - Java 13.0.1
 - MySQL 5.7.27.0
